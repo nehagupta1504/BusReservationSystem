@@ -1,0 +1,1074 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="busReservationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="BookingDateTime" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="10" />
+          <Property Name="NoOfSeats" Type="int" />
+          <Property Name="AmountPaid" Type="int" />
+          <Property Name="PaymentMode" Type="varchar" MaxLength="20" />
+          <Property Name="Driver" Type="bit" />
+        </EntityType>
+        <EntityType Name="bus">
+          <Key>
+            <PropertyRef Name="BusId" />
+          </Key>
+          <Property Name="BusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RouteId" Type="int" />
+          <Property Name="AgencyNAme" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BusType" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DepartureTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ArrivalTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Fare" Type="int" />
+          <Property Name="NoOfSeats" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="busSeatMap">
+          <Key>
+            <PropertyRef Name="bsmId" />
+          </Key>
+          <Property Name="bsmId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusId" Type="int" />
+          <Property Name="BoardingDate" Type="date" Nullable="false" />
+          <Property Name="DroppingDate" Type="date" Nullable="false" />
+          <Property Name="S1" Type="bit" />
+          <Property Name="S2" Type="bit" />
+          <Property Name="S3" Type="bit" />
+          <Property Name="S4" Type="bit" />
+          <Property Name="S5" Type="bit" />
+          <Property Name="S6" Type="bit" />
+          <Property Name="S7" Type="bit" />
+          <Property Name="S8" Type="bit" />
+          <Property Name="S9" Type="bit" />
+          <Property Name="S10" Type="bit" />
+          <Property Name="S11" Type="bit" />
+          <Property Name="S12" Type="bit" />
+          <Property Name="S13" Type="bit" />
+          <Property Name="S14" Type="bit" />
+          <Property Name="S15" Type="bit" />
+          <Property Name="S16" Type="bit" />
+          <Property Name="S17" Type="bit" />
+          <Property Name="S18" Type="bit" />
+          <Property Name="S19" Type="bit" />
+          <Property Name="S20" Type="bit" />
+          <Property Name="S21" Type="bit" />
+          <Property Name="S22" Type="bit" />
+          <Property Name="S23" Type="bit" />
+          <Property Name="S24" Type="bit" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="PhNo" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Authorised" Type="bit" Nullable="false" />
+          <Property Name="WalletAmount" Type="int" Nullable="false" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="Gender" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="CustomerSeatMap">
+          <Key>
+            <PropertyRef Name="csmId" />
+          </Key>
+          <Property Name="csmId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customeId" Type="int" />
+          <Property Name="busId" Type="int" />
+          <Property Name="bookingId" Type="int" />
+          <Property Name="boardingDate" Type="date" Nullable="false" />
+          <Property Name="S1" Type="bit" />
+          <Property Name="S2" Type="bit" />
+          <Property Name="S3" Type="bit" />
+          <Property Name="S4" Type="bit" />
+          <Property Name="S5" Type="bit" />
+          <Property Name="S6" Type="bit" />
+          <Property Name="S7" Type="bit" />
+          <Property Name="S8" Type="bit" />
+          <Property Name="S9" Type="bit" />
+          <Property Name="S10" Type="bit" />
+          <Property Name="S11" Type="bit" />
+          <Property Name="S12" Type="bit" />
+          <Property Name="S13" Type="bit" />
+          <Property Name="S14" Type="bit" />
+          <Property Name="S15" Type="bit" />
+          <Property Name="S16" Type="bit" />
+          <Property Name="S17" Type="bit" />
+          <Property Name="S18" Type="bit" />
+          <Property Name="S19" Type="bit" />
+          <Property Name="S20" Type="bit" />
+          <Property Name="S21" Type="bit" />
+          <Property Name="S22" Type="bit" />
+          <Property Name="S23" Type="bit" />
+          <Property Name="S24" Type="bit" />
+        </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="FeedbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="100" />
+          <Property Name="DateOfFeedback" Type="date" />
+        </EntityType>
+        <EntityType Name="route">
+          <Key>
+            <PropertyRef Name="RouteId" />
+          </Key>
+          <Property Name="RouteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Source" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Destination" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Distance" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__booking__BusId__3C34F16F">
+          <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="BusId" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="BusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__booking__Custome__3D2915A8">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bus__RouteId__31EC6D26">
+          <End Role="route" Type="Self.route" Multiplicity="0..1" />
+          <End Role="bus" Type="Self.bus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="route">
+              <PropertyRef Name="RouteId" />
+            </Principal>
+            <Dependent Role="bus">
+              <PropertyRef Name="RouteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__busSeatMa__BusId__02FC7413">
+          <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+          <End Role="busSeatMap" Type="Self.busSeatMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="BusId" />
+            </Principal>
+            <Dependent Role="busSeatMap">
+              <PropertyRef Name="BusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerS__booki__42E1EEFE">
+          <End Role="booking" Type="Self.booking" Multiplicity="0..1" />
+          <End Role="CustomerSeatMap" Type="Self.CustomerSeatMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="booking">
+              <PropertyRef Name="BookingId" />
+            </Principal>
+            <Dependent Role="CustomerSeatMap">
+              <PropertyRef Name="bookingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerS__busId__41EDCAC5">
+          <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+          <End Role="CustomerSeatMap" Type="Self.CustomerSeatMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="BusId" />
+            </Principal>
+            <Dependent Role="CustomerSeatMap">
+              <PropertyRef Name="busId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerS__custo__40F9A68C">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="CustomerSeatMap" Type="Self.CustomerSeatMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerSeatMap">
+              <PropertyRef Name="customeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedback__Custom__395884C4">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetAllBusWithRouteInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetBookingsForCid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetBookingWithCSM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetLatestBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSeatMapWithFare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SearchBusesOnThreeParameters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="src" Type="varchar" Mode="In" />
+          <Parameter Name="dest" Type="varchar" Mode="In" />
+          <Parameter Name="startDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SearchBusesOnTwoParameters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="boardDate" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="busReservationModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="booking" EntityType="Self.booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bus" EntityType="Self.bus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="busSeatMap" EntityType="Self.busSeatMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerSeatMap" EntityType="Self.CustomerSeatMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="route" EntityType="Self.route" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__booking__BusId__3C34F16F" Association="Self.FK__booking__BusId__3C34F16F">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__booking__Custome__3D2915A8" Association="Self.FK__booking__Custome__3D2915A8">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bus__RouteId__31EC6D26" Association="Self.FK__bus__RouteId__31EC6D26">
+            <End Role="route" EntitySet="route" />
+            <End Role="bus" EntitySet="bus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__busSeatMa__BusId__02FC7413" Association="Self.FK__busSeatMa__BusId__02FC7413">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="busSeatMap" EntitySet="busSeatMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerS__booki__42E1EEFE" Association="Self.FK__CustomerS__booki__42E1EEFE">
+            <End Role="booking" EntitySet="booking" />
+            <End Role="CustomerSeatMap" EntitySet="CustomerSeatMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerS__busId__41EDCAC5" Association="Self.FK__CustomerS__busId__41EDCAC5">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="CustomerSeatMap" EntitySet="CustomerSeatMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerS__custo__40F9A68C" Association="Self.FK__CustomerS__custo__40F9A68C">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="CustomerSeatMap" EntitySet="CustomerSeatMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedback__Custom__395884C4" Association="Self.FK__feedback__Custom__395884C4">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="busReservationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="BookingDateTime" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NoOfSeats" Type="Int32" />
+          <Property Name="AmountPaid" Type="Int32" />
+          <Property Name="PaymentMode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Driver" Type="Boolean" />
+          <NavigationProperty Name="bus" Relationship="Self.FK__booking__BusId__34C8D9D1" FromRole="booking" ToRole="bus" />
+          <NavigationProperty Name="customer" Relationship="Self.FK__booking__Custome__35BCFE0A" FromRole="booking" ToRole="customer" />
+          <NavigationProperty Name="CustomerSeatMaps" Relationship="busReservationModel.FK__CustomerS__booki__1EA48E88" FromRole="booking" ToRole="CustomerSeatMap" />
+        </EntityType>
+        <EntityType Name="bus">
+          <Key>
+            <PropertyRef Name="BusId" />
+          </Key>
+          <Property Name="BusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RouteId" Type="Int32" />
+          <Property Name="AgencyNAme" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BusType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DepartureTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ArrivalTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Fare" Type="Int32" />
+          <Property Name="NoOfSeats" Type="Byte" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK__booking__BusId__34C8D9D1" FromRole="bus" ToRole="booking" />
+          <NavigationProperty Name="route" Relationship="Self.FK__bus__RouteId__31EC6D26" FromRole="bus" ToRole="route" />
+          <NavigationProperty Name="busSeatMaps" Relationship="Self.FK__busSeatMa__BusId__02FC7413" FromRole="bus" ToRole="busSeatMap" />
+          <NavigationProperty Name="CustomerSeatMaps" Relationship="busReservationModel.FK__CustomerS__busId__1DB06A4F" FromRole="bus" ToRole="CustomerSeatMap" />
+        </EntityType>
+        <EntityType Name="busSeatMap">
+          <Key>
+            <PropertyRef Name="bsmId" />
+          </Key>
+          <Property Name="bsmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusId" Type="Int32" />
+          <Property Name="BoardingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DroppingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="S1" Type="Boolean" />
+          <Property Name="S2" Type="Boolean" />
+          <Property Name="S3" Type="Boolean" />
+          <Property Name="S4" Type="Boolean" />
+          <Property Name="S5" Type="Boolean" />
+          <Property Name="S6" Type="Boolean" />
+          <Property Name="S7" Type="Boolean" />
+          <Property Name="S8" Type="Boolean" />
+          <Property Name="S9" Type="Boolean" />
+          <Property Name="S10" Type="Boolean" />
+          <Property Name="S11" Type="Boolean" />
+          <Property Name="S12" Type="Boolean" />
+          <Property Name="S13" Type="Boolean" />
+          <Property Name="S14" Type="Boolean" />
+          <Property Name="S15" Type="Boolean" />
+          <Property Name="S16" Type="Boolean" />
+          <Property Name="S17" Type="Boolean" />
+          <Property Name="S18" Type="Boolean" />
+          <Property Name="S19" Type="Boolean" />
+          <Property Name="S20" Type="Boolean" />
+          <Property Name="S21" Type="Boolean" />
+          <Property Name="S22" Type="Boolean" />
+          <Property Name="S23" Type="Boolean" />
+          <Property Name="S24" Type="Boolean" />
+          <NavigationProperty Name="bus" Relationship="Self.FK__busSeatMa__BusId__02FC7413" FromRole="busSeatMap" ToRole="bus" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhNo" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Authorised" Type="Boolean" Nullable="false" />
+          <Property Name="WalletAmount" Type="Int32" Nullable="false" />
+          <Property Name="Dob" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK__booking__Custome__35BCFE0A" FromRole="customer" ToRole="booking" />
+          <NavigationProperty Name="CustomerSeatMaps" Relationship="busReservationModel.FK__CustomerS__custo__1CBC4616" FromRole="customer" ToRole="CustomerSeatMap" />
+          <NavigationProperty Name="feedbacks" Relationship="busReservationModel.FK__feedback__Custom__2C3393D0" FromRole="customer" ToRole="feedback" />
+        </EntityType>
+        <EntityType Name="route">
+          <Key>
+            <PropertyRef Name="RouteId" />
+          </Key>
+          <Property Name="RouteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Source" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Destination" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Distance" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="buses" Relationship="Self.FK__bus__RouteId__31EC6D26" FromRole="route" ToRole="bus" />
+        </EntityType>
+        <Association Name="FK__booking__BusId__34C8D9D1">
+          <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="BusId" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="BusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__booking__Custome__35BCFE0A">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bus__RouteId__31EC6D26">
+          <End Role="route" Type="Self.route" Multiplicity="0..1" />
+          <End Role="bus" Type="Self.bus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="route">
+              <PropertyRef Name="RouteId" />
+            </Principal>
+            <Dependent Role="bus">
+              <PropertyRef Name="RouteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__busSeatMa__BusId__02FC7413">
+          <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+          <End Role="busSeatMap" Type="Self.busSeatMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="BusId" />
+            </Principal>
+            <Dependent Role="busSeatMap">
+              <PropertyRef Name="BusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="busReservationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admin" />
+          <EntitySet Name="bookings" EntityType="Self.booking" />
+          <EntitySet Name="buses" EntityType="Self.bus" />
+          <EntitySet Name="busSeatMaps" EntityType="Self.busSeatMap" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="routes" EntityType="Self.route" />
+          <AssociationSet Name="FK__booking__BusId__34C8D9D1" Association="Self.FK__booking__BusId__34C8D9D1">
+            <End Role="bus" EntitySet="buses" />
+            <End Role="booking" EntitySet="bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__booking__Custome__35BCFE0A" Association="Self.FK__booking__Custome__35BCFE0A">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="booking" EntitySet="bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bus__RouteId__31EC6D26" Association="Self.FK__bus__RouteId__31EC6D26">
+            <End Role="route" EntitySet="routes" />
+            <End Role="bus" EntitySet="buses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__busSeatMa__BusId__02FC7413" Association="Self.FK__busSeatMa__BusId__02FC7413">
+            <End Role="bus" EntitySet="buses" />
+            <End Role="busSeatMap" EntitySet="busSeatMaps" />
+          </AssociationSet>
+          <FunctionImport Name="GetAllBusWithRouteInfo" ReturnType="Collection(busReservationModel.GetAllBusWithRouteInfo_Result)" />
+          <FunctionImport Name="GetSeatMapWithFare" ReturnType="Collection(busReservationModel.GetSeatMapWithFare_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SearchBusesOnThreeParameters" ReturnType="Collection(busReservationModel.SearchBusesOnThreeParameters_Result)">
+            <Parameter Name="src" Mode="In" Type="String" />
+            <Parameter Name="dest" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SearchBusesOnTwoParameters" ReturnType="Collection(busReservationModel.SearchBusesOnTwoParameters_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="boardDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="CustomerSeatMaps" EntityType="busReservationModel.CustomerSeatMap" />
+          <EntitySet Name="feedbacks" EntityType="busReservationModel.feedback" />
+          <AssociationSet Name="FK__CustomerS__booki__1EA48E88" Association="busReservationModel.FK__CustomerS__booki__1EA48E88">
+            <End Role="booking" EntitySet="bookings" />
+            <End Role="CustomerSeatMap" EntitySet="CustomerSeatMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerS__busId__1DB06A4F" Association="busReservationModel.FK__CustomerS__busId__1DB06A4F">
+            <End Role="bus" EntitySet="buses" />
+            <End Role="CustomerSeatMap" EntitySet="CustomerSeatMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerS__custo__1CBC4616" Association="busReservationModel.FK__CustomerS__custo__1CBC4616">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="CustomerSeatMap" EntitySet="CustomerSeatMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedback__Custom__2C3393D0" Association="busReservationModel.FK__feedback__Custom__2C3393D0">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="feedback" EntitySet="feedbacks" />
+          </AssociationSet>
+          <FunctionImport Name="GetLatestBooking" ReturnType="Collection(busReservationModel.GetLatestBooking_Result)" />
+          <FunctionImport Name="GetBookingWithCSM" ReturnType="Collection(busReservationModel.GetBookingWithCSM_Result)">
+          <Parameter Name="bid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetBookingsForCid" ReturnType="Collection(busReservationModel.GetBookingsForCid_Result)">
+            <Parameter Name="cid" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAllBusWithRouteInfo_Result">
+          <Property Type="Int32" Name="BusId" Nullable="false" />
+          <Property Type="Int32" Name="RouteId" Nullable="true" />
+          <Property Type="String" Name="AgencyNAme" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="BusType" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Source" Nullable="false" MaxLength="20" />
+          <Property Type="Time" Name="DepartureTime" Nullable="false" />
+          <Property Type="String" Name="Destination" Nullable="false" MaxLength="20" />
+          <Property Type="Time" Name="ArrivalTime" Nullable="false" />
+          <Property Type="Int32" Name="Fare" Nullable="true" />
+          <Property Type="Byte" Name="NoOfSeats" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetSeatMapWithFare_Result">
+          <Property Type="Int32" Name="BusId" Nullable="true" />
+          <Property Type="DateTime" Name="BoardingDate" Nullable="false" />
+          <Property Type="DateTime" Name="DroppingDate" Nullable="false" />
+          <Property Type="Boolean" Name="S1" Nullable="true" />
+          <Property Type="Boolean" Name="S2" Nullable="true" />
+          <Property Type="Boolean" Name="S3" Nullable="true" />
+          <Property Type="Boolean" Name="S4" Nullable="true" />
+          <Property Type="Boolean" Name="S5" Nullable="true" />
+          <Property Type="Boolean" Name="S6" Nullable="true" />
+          <Property Type="Boolean" Name="S7" Nullable="true" />
+          <Property Type="Boolean" Name="S8" Nullable="true" />
+          <Property Type="Boolean" Name="S9" Nullable="true" />
+          <Property Type="Boolean" Name="S10" Nullable="true" />
+          <Property Type="Boolean" Name="S11" Nullable="true" />
+          <Property Type="Boolean" Name="S12" Nullable="true" />
+          <Property Type="Boolean" Name="S13" Nullable="true" />
+          <Property Type="Boolean" Name="S14" Nullable="true" />
+          <Property Type="Boolean" Name="S15" Nullable="true" />
+          <Property Type="Boolean" Name="S16" Nullable="true" />
+          <Property Type="Boolean" Name="S17" Nullable="true" />
+          <Property Type="Boolean" Name="S18" Nullable="true" />
+          <Property Type="Boolean" Name="S19" Nullable="true" />
+          <Property Type="Boolean" Name="S20" Nullable="true" />
+          <Property Type="Boolean" Name="S21" Nullable="true" />
+          <Property Type="Boolean" Name="S22" Nullable="true" />
+          <Property Type="Boolean" Name="S23" Nullable="true" />
+          <Property Type="Boolean" Name="S24" Nullable="true" />
+          <Property Type="Int32" Name="Fare" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SearchBusesOnThreeParameters_Result">
+          <Property Type="Int32" Name="BusNumber" Nullable="false" />
+          <Property Type="String" Name="AgencyNAme" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Source" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Destination" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="BoardingDate" Nullable="false" />
+          <Property Type="Time" Name="DepartureTime" Nullable="false" />
+          <Property Type="DateTime" Name="DroppingDate" Nullable="false" />
+          <Property Type="Time" Name="ArrivalTime" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchBusesOnTwoParameters_Result">
+          <Property Type="Int32" Name="BusNumber" Nullable="false" />
+          <Property Type="String" Name="AgencyNAme" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Source" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Destination" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="BoardingDate" Nullable="false" />
+          <Property Type="DateTime" Name="DroppingDate" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="CustomerSeatMap">
+          <Key>
+            <PropertyRef Name="csmId" />
+          </Key>
+          <Property Name="csmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customeId" Type="Int32" />
+          <Property Name="busId" Type="Int32" />
+          <Property Name="bookingId" Type="Int32" />
+          <Property Name="boardingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="S1" Type="Boolean" />
+          <Property Name="S2" Type="Boolean" />
+          <Property Name="S3" Type="Boolean" />
+          <Property Name="S4" Type="Boolean" />
+          <Property Name="S5" Type="Boolean" />
+          <Property Name="S6" Type="Boolean" />
+          <Property Name="S7" Type="Boolean" />
+          <Property Name="S8" Type="Boolean" />
+          <Property Name="S9" Type="Boolean" />
+          <Property Name="S10" Type="Boolean" />
+          <Property Name="S11" Type="Boolean" />
+          <Property Name="S12" Type="Boolean" />
+          <Property Name="S13" Type="Boolean" />
+          <Property Name="S14" Type="Boolean" />
+          <Property Name="S15" Type="Boolean" />
+          <Property Name="S16" Type="Boolean" />
+          <Property Name="S17" Type="Boolean" />
+          <Property Name="S18" Type="Boolean" />
+          <Property Name="S19" Type="Boolean" />
+          <Property Name="S20" Type="Boolean" />
+          <Property Name="S21" Type="Boolean" />
+          <Property Name="S22" Type="Boolean" />
+          <Property Name="S23" Type="Boolean" />
+          <Property Name="S24" Type="Boolean" />
+          <NavigationProperty Name="booking" Relationship="busReservationModel.FK__CustomerS__booki__1EA48E88" FromRole="CustomerSeatMap" ToRole="booking" />
+          <NavigationProperty Name="bus" Relationship="busReservationModel.FK__CustomerS__busId__1DB06A4F" FromRole="CustomerSeatMap" ToRole="bus" />
+          <NavigationProperty Name="customer" Relationship="busReservationModel.FK__CustomerS__custo__1CBC4616" FromRole="CustomerSeatMap" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfFeedback" Type="DateTime" Precision="0" />
+          <Property Name="FeedbackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="customer" Relationship="busReservationModel.FK__feedback__Custom__2C3393D0" FromRole="feedback" ToRole="customer" />
+        </EntityType>
+        <Association Name="FK__CustomerS__booki__1EA48E88">
+          <End Type="busReservationModel.booking" Role="booking" Multiplicity="0..1" />
+          <End Type="busReservationModel.CustomerSeatMap" Role="CustomerSeatMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="booking">
+              <PropertyRef Name="BookingId" />
+            </Principal>
+            <Dependent Role="CustomerSeatMap">
+              <PropertyRef Name="bookingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerS__busId__1DB06A4F">
+          <End Type="busReservationModel.bus" Role="bus" Multiplicity="0..1" />
+          <End Type="busReservationModel.CustomerSeatMap" Role="CustomerSeatMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="BusId" />
+            </Principal>
+            <Dependent Role="CustomerSeatMap">
+              <PropertyRef Name="busId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerS__custo__1CBC4616">
+          <End Type="busReservationModel.customer" Role="customer" Multiplicity="0..1" />
+          <End Type="busReservationModel.CustomerSeatMap" Role="CustomerSeatMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerSeatMap">
+              <PropertyRef Name="customeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedback__Custom__2C3393D0">
+          <End Type="busReservationModel.customer" Role="customer" Multiplicity="0..1" />
+          <End Type="busReservationModel.feedback" Role="feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetLatestBooking_Result">
+          <Property Type="Int32" Name="BookingId" Nullable="false" />
+          <Property Type="Int32" Name="BusId" Nullable="true" />
+          <Property Type="Int32" Name="CustomerId" Nullable="true" />
+          <Property Type="DateTime" Name="BookingDateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="NoOfSeats" Nullable="true" />
+          <Property Type="Int32" Name="AmountPaid" Nullable="true" />
+          <Property Type="String" Name="PaymentMode" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="Driver" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetBookingWithCSM_Result">
+          <Property Type="Int32" Name="BookingId" Nullable="false" />
+          <Property Type="Int32" Name="BusId" Nullable="true" />
+          <Property Type="Int32" Name="CustomerId" Nullable="true" />
+          <Property Type="DateTime" Name="BookingDateTime" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="NoOfSeats" Nullable="true" />
+          <Property Type="Int32" Name="AmountPaid" Nullable="true" />
+          <Property Type="String" Name="PaymentMode" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="Driver" Nullable="true" />
+          <Property Type="Int32" Name="csmId" Nullable="false" />
+          <Property Type="DateTime" Name="boardingDate" Nullable="false" />
+          <Property Type="Boolean" Name="s1" Nullable="true" />
+          <Property Type="Boolean" Name="s2" Nullable="true" />
+          <Property Type="Boolean" Name="s3" Nullable="true" />
+          <Property Type="Boolean" Name="s4" Nullable="true" />
+          <Property Type="Boolean" Name="s5" Nullable="true" />
+          <Property Type="Boolean" Name="s6" Nullable="true" />
+          <Property Type="Boolean" Name="S7" Nullable="true" />
+          <Property Type="Boolean" Name="S8" Nullable="true" />
+          <Property Type="Boolean" Name="s9" Nullable="true" />
+          <Property Type="Boolean" Name="s10" Nullable="true" />
+          <Property Type="Boolean" Name="s11" Nullable="true" />
+          <Property Type="Boolean" Name="s12" Nullable="true" />
+          <Property Type="Boolean" Name="s13" Nullable="true" />
+          <Property Type="Boolean" Name="s14" Nullable="true" />
+          <Property Type="Boolean" Name="s15" Nullable="true" />
+          <Property Type="Boolean" Name="s16" Nullable="true" />
+          <Property Type="Boolean" Name="s17" Nullable="true" />
+          <Property Type="Boolean" Name="s18" Nullable="true" />
+          <Property Type="Boolean" Name="s19" Nullable="true" />
+          <Property Type="Boolean" Name="s20" Nullable="true" />
+          <Property Type="Boolean" Name="s21" Nullable="true" />
+          <Property Type="Boolean" Name="s22" Nullable="true" />
+          <Property Type="Boolean" Name="s23" Nullable="true" />
+          <Property Type="Boolean" Name="s24" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetBookingsForCid_Result">
+          <Property Type="Int32" Name="BookingId" Nullable="false" />
+          <Property Type="Int32" Name="BusId" Nullable="true" />
+          <Property Type="Int32" Name="CustomerId" Nullable="true" />
+          <Property Type="DateTime" Name="BookingDateTime" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="NoOfSeats" Nullable="true" />
+          <Property Type="Int32" Name="AmountPaid" Nullable="true" />
+          <Property Type="String" Name="PaymentMode" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="Driver" Nullable="true" />
+          <Property Type="DateTime" Name="boardingDate" Nullable="false" />
+          <Property Type="String" Name="Source" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Destination" Nullable="false" MaxLength="20" />
+          <Property Type="Time" Name="DepartureTime" Nullable="false" />
+          <Property Type="Time" Name="ArrivalTime" Nullable="false" />
+          <Property Type="String" Name="BusType" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="AgencyNAme" Nullable="false" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="busReservationModelStoreContainer" CdmEntityContainer="busReservationEntities">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="busReservationModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bookings">
+            <EntityTypeMapping TypeName="busReservationModel.booking">
+              <MappingFragment StoreEntitySet="booking">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="BookingDateTime" ColumnName="BookingDateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NoOfSeats" ColumnName="NoOfSeats" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buses">
+            <EntityTypeMapping TypeName="busReservationModel.bus">
+              <MappingFragment StoreEntitySet="bus">
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+                <ScalarProperty Name="AgencyNAme" ColumnName="AgencyNAme" />
+                <ScalarProperty Name="BusType" ColumnName="BusType" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="Fare" ColumnName="Fare" />
+                <ScalarProperty Name="NoOfSeats" ColumnName="NoOfSeats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="busSeatMaps">
+            <EntityTypeMapping TypeName="busReservationModel.busSeatMap">
+              <MappingFragment StoreEntitySet="busSeatMap">
+                <ScalarProperty Name="bsmId" ColumnName="bsmId" />
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="BoardingDate" ColumnName="BoardingDate" />
+                <ScalarProperty Name="DroppingDate" ColumnName="DroppingDate" />
+                <ScalarProperty Name="S1" ColumnName="S1" />
+                <ScalarProperty Name="S2" ColumnName="S2" />
+                <ScalarProperty Name="S3" ColumnName="S3" />
+                <ScalarProperty Name="S4" ColumnName="S4" />
+                <ScalarProperty Name="S5" ColumnName="S5" />
+                <ScalarProperty Name="S6" ColumnName="S6" />
+                <ScalarProperty Name="S7" ColumnName="S7" />
+                <ScalarProperty Name="S8" ColumnName="S8" />
+                <ScalarProperty Name="S9" ColumnName="S9" />
+                <ScalarProperty Name="S10" ColumnName="S10" />
+                <ScalarProperty Name="S11" ColumnName="S11" />
+                <ScalarProperty Name="S12" ColumnName="S12" />
+                <ScalarProperty Name="S13" ColumnName="S13" />
+                <ScalarProperty Name="S14" ColumnName="S14" />
+                <ScalarProperty Name="S15" ColumnName="S15" />
+                <ScalarProperty Name="S16" ColumnName="S16" />
+                <ScalarProperty Name="S17" ColumnName="S17" />
+                <ScalarProperty Name="S18" ColumnName="S18" />
+                <ScalarProperty Name="S19" ColumnName="S19" />
+                <ScalarProperty Name="S20" ColumnName="S20" />
+                <ScalarProperty Name="S21" ColumnName="S21" />
+                <ScalarProperty Name="S22" ColumnName="S22" />
+                <ScalarProperty Name="S23" ColumnName="S23" />
+                <ScalarProperty Name="S24" ColumnName="S24" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="busReservationModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhNo" ColumnName="PhNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Authorised" ColumnName="Authorised" />
+                <ScalarProperty Name="WalletAmount" ColumnName="WalletAmount" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="routes">
+            <EntityTypeMapping TypeName="busReservationModel.route">
+              <MappingFragment StoreEntitySet="route">
+                <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllBusWithRouteInfo" FunctionName="busReservationModel.Store.GetAllBusWithRouteInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="busReservationModel.GetAllBusWithRouteInfo_Result">
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+                <ScalarProperty Name="AgencyNAme" ColumnName="AgencyNAme" />
+                <ScalarProperty Name="BusType" ColumnName="BusType" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="Fare" ColumnName="Fare" />
+                <ScalarProperty Name="NoOfSeats" ColumnName="NoOfSeats" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSeatMapWithFare" FunctionName="busReservationModel.Store.GetSeatMapWithFare">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="busReservationModel.GetSeatMapWithFare_Result">
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="BoardingDate" ColumnName="BoardingDate" />
+                <ScalarProperty Name="DroppingDate" ColumnName="DroppingDate" />
+                <ScalarProperty Name="S1" ColumnName="S1" />
+                <ScalarProperty Name="S2" ColumnName="S2" />
+                <ScalarProperty Name="S3" ColumnName="S3" />
+                <ScalarProperty Name="S4" ColumnName="S4" />
+                <ScalarProperty Name="S5" ColumnName="S5" />
+                <ScalarProperty Name="S6" ColumnName="S6" />
+                <ScalarProperty Name="S7" ColumnName="S7" />
+                <ScalarProperty Name="S8" ColumnName="S8" />
+                <ScalarProperty Name="S9" ColumnName="S9" />
+                <ScalarProperty Name="S10" ColumnName="S10" />
+                <ScalarProperty Name="S11" ColumnName="S11" />
+                <ScalarProperty Name="S12" ColumnName="S12" />
+                <ScalarProperty Name="S13" ColumnName="S13" />
+                <ScalarProperty Name="S14" ColumnName="S14" />
+                <ScalarProperty Name="S15" ColumnName="S15" />
+                <ScalarProperty Name="S16" ColumnName="S16" />
+                <ScalarProperty Name="S17" ColumnName="S17" />
+                <ScalarProperty Name="S18" ColumnName="S18" />
+                <ScalarProperty Name="S19" ColumnName="S19" />
+                <ScalarProperty Name="S20" ColumnName="S20" />
+                <ScalarProperty Name="S21" ColumnName="S21" />
+                <ScalarProperty Name="S22" ColumnName="S22" />
+                <ScalarProperty Name="S23" ColumnName="S23" />
+                <ScalarProperty Name="S24" ColumnName="S24" />
+                <ScalarProperty Name="Fare" ColumnName="Fare" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchBusesOnThreeParameters" FunctionName="busReservationModel.Store.SearchBusesOnThreeParameters">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="busReservationModel.SearchBusesOnThreeParameters_Result">
+                <ScalarProperty Name="BusNumber" ColumnName="BusNumber" />
+                <ScalarProperty Name="AgencyNAme" ColumnName="AgencyNAme" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="BoardingDate" ColumnName="BoardingDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="DroppingDate" ColumnName="DroppingDate" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchBusesOnTwoParameters" FunctionName="busReservationModel.Store.SearchBusesOnTwoParameters">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="busReservationModel.SearchBusesOnTwoParameters_Result">
+                <ScalarProperty Name="BusNumber" ColumnName="BusNumber" />
+                <ScalarProperty Name="AgencyNAme" ColumnName="AgencyNAme" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="BoardingDate" ColumnName="BoardingDate" />
+                <ScalarProperty Name="DroppingDate" ColumnName="DroppingDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CustomerSeatMaps">
+            <EntityTypeMapping TypeName="busReservationModel.CustomerSeatMap">
+              <MappingFragment StoreEntitySet="CustomerSeatMap">
+                <ScalarProperty Name="S24" ColumnName="S24" />
+                <ScalarProperty Name="S23" ColumnName="S23" />
+                <ScalarProperty Name="S22" ColumnName="S22" />
+                <ScalarProperty Name="S21" ColumnName="S21" />
+                <ScalarProperty Name="S20" ColumnName="S20" />
+                <ScalarProperty Name="S19" ColumnName="S19" />
+                <ScalarProperty Name="S18" ColumnName="S18" />
+                <ScalarProperty Name="S17" ColumnName="S17" />
+                <ScalarProperty Name="S16" ColumnName="S16" />
+                <ScalarProperty Name="S15" ColumnName="S15" />
+                <ScalarProperty Name="S14" ColumnName="S14" />
+                <ScalarProperty Name="S13" ColumnName="S13" />
+                <ScalarProperty Name="S12" ColumnName="S12" />
+                <ScalarProperty Name="S11" ColumnName="S11" />
+                <ScalarProperty Name="S10" ColumnName="S10" />
+                <ScalarProperty Name="S9" ColumnName="S9" />
+                <ScalarProperty Name="S8" ColumnName="S8" />
+                <ScalarProperty Name="S7" ColumnName="S7" />
+                <ScalarProperty Name="S6" ColumnName="S6" />
+                <ScalarProperty Name="S5" ColumnName="S5" />
+                <ScalarProperty Name="S4" ColumnName="S4" />
+                <ScalarProperty Name="S3" ColumnName="S3" />
+                <ScalarProperty Name="S2" ColumnName="S2" />
+                <ScalarProperty Name="S1" ColumnName="S1" />
+                <ScalarProperty Name="boardingDate" ColumnName="boardingDate" />
+                <ScalarProperty Name="bookingId" ColumnName="bookingId" />
+                <ScalarProperty Name="busId" ColumnName="busId" />
+                <ScalarProperty Name="customeId" ColumnName="customeId" />
+                <ScalarProperty Name="csmId" ColumnName="csmId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feedbacks">
+            <EntityTypeMapping TypeName="busReservationModel.feedback">
+              <MappingFragment StoreEntitySet="feedback">
+                <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
+                <ScalarProperty Name="DateOfFeedback" ColumnName="DateOfFeedback" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetLatestBooking" FunctionName="busReservationModel.Store.GetLatestBooking">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="busReservationModel.GetLatestBooking_Result">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="BookingDateTime" ColumnName="BookingDateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NoOfSeats" ColumnName="NoOfSeats" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBookingWithCSM" FunctionName="busReservationModel.Store.GetBookingWithCSM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="busReservationModel.GetBookingWithCSM_Result">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="BookingDateTime" ColumnName="BookingDateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NoOfSeats" ColumnName="NoOfSeats" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="csmId" ColumnName="csmId" />
+                <ScalarProperty Name="boardingDate" ColumnName="boardingDate" />
+                <ScalarProperty Name="s1" ColumnName="s1" />
+                <ScalarProperty Name="s2" ColumnName="s2" />
+                <ScalarProperty Name="s3" ColumnName="s3" />
+                <ScalarProperty Name="s4" ColumnName="s4" />
+                <ScalarProperty Name="s5" ColumnName="s5" />
+                <ScalarProperty Name="s6" ColumnName="s6" />
+                <ScalarProperty Name="S7" ColumnName="S7" />
+                <ScalarProperty Name="S8" ColumnName="S8" />
+                <ScalarProperty Name="s9" ColumnName="s9" />
+                <ScalarProperty Name="s10" ColumnName="s10" />
+                <ScalarProperty Name="s11" ColumnName="s11" />
+                <ScalarProperty Name="s12" ColumnName="s12" />
+                <ScalarProperty Name="s13" ColumnName="s13" />
+                <ScalarProperty Name="s14" ColumnName="s14" />
+                <ScalarProperty Name="s15" ColumnName="s15" />
+                <ScalarProperty Name="s16" ColumnName="s16" />
+                <ScalarProperty Name="s17" ColumnName="s17" />
+                <ScalarProperty Name="s18" ColumnName="s18" />
+                <ScalarProperty Name="s19" ColumnName="s19" />
+                <ScalarProperty Name="s20" ColumnName="s20" />
+                <ScalarProperty Name="s21" ColumnName="s21" />
+                <ScalarProperty Name="s22" ColumnName="s22" />
+                <ScalarProperty Name="s23" ColumnName="s23" />
+                <ScalarProperty Name="s24" ColumnName="s24" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBookingsForCid" FunctionName="busReservationModel.Store.GetBookingsForCid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="busReservationModel.GetBookingsForCid_Result">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="BookingDateTime" ColumnName="BookingDateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NoOfSeats" ColumnName="NoOfSeats" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="boardingDate" ColumnName="boardingDate" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="BusType" ColumnName="BusType" />
+                <ScalarProperty Name="AgencyNAme" ColumnName="AgencyNAme" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

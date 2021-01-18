@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2dd82085434a48d8a165f3363b2d7a7e" Name="Diagram1">
+        <EntityTypeShape EntityType="busReservationModel.admin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="busReservationModel.booking" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="busReservationModel.bus" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="busReservationModel.busSeatMap" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="busReservationModel.customer" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="busReservationModel.route" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="busReservationModel.FK__booking__BusId__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="busReservationModel.FK__booking__Custome__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="busReservationModel.FK__bus__RouteId__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="busReservationModel.FK__busSeatMa__BusId__02FC7413" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="busReservationModel.CustomerSeatMap" Width="1.5" PointX="7.5" PointY="5.125" />
+        <EntityTypeShape EntityType="busReservationModel.feedback" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="busReservationModel.FK__CustomerS__booki__1EA48E88" />
+        <AssociationConnector Association="busReservationModel.FK__CustomerS__busId__1DB06A4F" />
+        <AssociationConnector Association="busReservationModel.FK__CustomerS__custo__1CBC4616" />
+        <AssociationConnector Association="busReservationModel.FK__feedback__Custom__2C3393D0" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

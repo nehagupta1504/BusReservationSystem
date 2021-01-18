@@ -1,0 +1,2586 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SocketLabs</name>
+    </assembly>
+    <members>
+        <member name="T:SocketLabs.InjectionApi.AddressResult">
+            <summary>
+            The result of a single recipient in the Injection request.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.AddressResult.EmailAddress">
+            <summary>
+            The recipient's email address.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.AddressResult.Accepted">
+            <summary>
+            Whether the recipient was accepted for delivery.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.AddressResult.ErrorCode">
+            <summary>
+            An error code detailing why the recipient was not accepted.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.AddressResult.ToString">
+            <summary>
+            Represents the <c>AddressResult</c> as a string.  Useful for debugging.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.IInjectionRequestFactory.GenerateRequest(SocketLabs.InjectionApi.Message.IBasicMessage)">
+            <summary>
+            Generate the <c>InjectionRequest</c> for sending to the Injection Api
+            </summary>
+            <param name="message">An <c>IBasicMessage</c> object to be sent.</param> 
+            <returns>An <c>InjectionRequest</c> for sending to the Injection Api</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.IInjectionRequestFactory.GenerateRequest(SocketLabs.InjectionApi.Message.IBulkMessage)">
+            <summary>
+            Generate the <c>InjectionRequest</c> for sending to the Injection Api
+            </summary>
+            <param name="message">An <c>IBulkMessage</c> object to be sent.</param>
+            <returns>An <c>InjectionRequest</c> for sending to the Injection Api</returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.InjectionRequestFactory">
+            <summary>
+            Used by the Send function of the SocketLabsClient to generate an InjectionRequest for the Injection Api
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionRequestFactory.#ctor(System.Int32,System.String)">
+            <summary>
+            Creates a new instance of the <c>InjectionRequestFactory</c>.
+            </summary>
+            <param name="serverId">Your SocketLabs ServerId number.</param>
+            <param name="apiKey">Your SocketLabs Injection API key.</param>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionRequestFactory.GenerateRequest(SocketLabs.InjectionApi.Message.IBasicMessage)">
+            <summary>
+            Generate the <c>InjectionRequest</c> for sending to the Injection Api
+            </summary>
+            <param name="message">An <c>IBasicMessage</c> object to be sent.</param> 
+            <returns>An <c>InjectionRequest</c> for sending to the Injection Api</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionRequestFactory.GenerateRequest(SocketLabs.InjectionApi.Message.IBulkMessage)">
+            <summary>
+            Generate the <c>InjectionRequest</c> for sending to the Injection Api
+            </summary>
+            <param name="message">An <c>IBulkMessage</c> object to be sent.</param>
+            <returns>An <c>InjectionRequest</c> for sending to the Injection Api</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionRequestFactory.GenerateBaseMessageJson(SocketLabs.InjectionApi.Message.IMessageBase)">
+            <summary>
+            Generate the base <c>MessageJson</c> for a message
+            </summary>
+            <param name="message">The base interface, <c>IMessageBase</c>, of the message to be sent.</param>
+            <returns>A <c>MessageJson</c> object for generating an InjectionRequest</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionRequestFactory.PopulateList(System.Collections.Generic.IEnumerable{SocketLabs.InjectionApi.Message.IAttachment})">
+            <summary>
+            Converting a <c><![CDATA[ IEnumerable<IAttachment> ]]></c> to a <c><![CDATA[ List<AttachmentJson> ]]></c>
+            </summary>
+            <param name="attachments">A <c><![CDATA[ IEnumerable<IAttachment> ]]></c> from the message</param>
+            <returns>A <c><![CDATA[ List<AttachmentJson> ]]></c> used in generating an InjectionRequest</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionRequestFactory.PopulateCustomHeaders(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.ICustomHeader})">
+            <summary>
+            Converting a <c><![CDATA[ IList<ICustomHeader> ]]></c> to a <c><![CDATA[ List<CustomHeadersJson> ]]></c>
+            </summary>
+            <param name="customHeaders">A <c><![CDATA[ IList<ICustomHeader> ]]></c> from the message</param>
+            <returns>A <c><![CDATA[ List<CustomHeadersJson> ]]></c> used in generating an InjectionRequest</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionRequestFactory.PopulateList(System.Collections.Generic.IEnumerable{SocketLabs.InjectionApi.Message.IEmailAddress})">
+            <summary>
+            Converting a <c><![CDATA[ IEnumerable<IEmailAddress> ]]></c> to a <c><![CDATA[ List<AddressJson> ]]></c>
+            </summary>
+            <param name="recipients">A List of <c>IEmailAddress</c> from the message</param>
+            <returns>A <c><![CDATA[ List<AddressJson> ]]></c> used in generating an InjectionRequest</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionRequestFactory.GetBulkMergeFields(System.Collections.Generic.IEnumerable{SocketLabs.InjectionApi.Message.IBulkRecipient})">
+            <summary>
+            Converting a <c><![CDATA[ IEnumerable<IBulkRecipient> ]]></c> to a <c><![CDATA[ List<List<MergeFieldJson>> ]]></c>
+            </summary>
+            <param name="recipients">A <c><![CDATA[ IEnumerable<IBulkRecipient> ]]></c> from the message</param>
+            <returns>A <c><![CDATA[ List<List<MergeFieldJson>> ]]></c> used in generating an InjectionRequest</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionRequestFactory.PopulateMergeData(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Converting a <c><![CDATA[ IDictionary<string, string> ]]></c> of MergeData to a <c><![CDATA[ List<MergeFieldJson> ]]></c>
+            </summary>
+            <param name="mergeData">A <c><![CDATA[ IDictionary<string, string> ]]></c> of MergeData from the message</param>
+            <returns>A <c><![CDATA[ List<MergeFieldJson> ]]></c> used in generating an InjectionRequest</returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.InjectionResponseParser">
+            <summary>
+            Used by the <c>SocketLabsClient</c> to convert the response form the Injection API.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionResponseParser.Parse(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Parse the response from theInjection Api into <c>SendResponse</c>
+            </summary>
+            <param name="httpResponse">The <c>HttpResponseMessage</c> from the Injection Api</param>
+            <returns>A <c>SendResponse</c> from the Injection Api response</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.InjectionResponseParser.DetermineSendResult(SocketLabs.InjectionApi.Core.Serialization.InjectionResponseDto,System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Enumerated SendResult of the payload response from the Injection Api
+            </summary>
+            <param name="responseDto">The <c>InjectionResponseDto</c> from the Injection Api</param>
+            <param name="httpResponse">The <c>HttpResponseMessage</c> from the Injection Api</param>
+            <returns>The <c>SendResult</c> from the Injection Api response</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.ISendValidator.ValidateMessage(SocketLabs.InjectionApi.Message.IBasicMessage)">
+            <summary>
+            Validate a basic email message before sending to the Injection API.
+            </summary>
+            <param name="message">A <c>BasicMessage</c> object to be sent.</param> 
+            <returns>A <c>SendResponse</c> with the validation results</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.ISendValidator.ValidateMessage(SocketLabs.InjectionApi.Message.IBulkMessage)">
+            <summary>
+            Validate a bulk email message before sending to the Injection API.
+            </summary>
+            <param name="message">A <c>BulkMessage</c> object to be sent.</param>
+            <returns>A <c>SendResponse</c> with the validation results</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.ISendValidator.ValidateCredentials(System.Int32,System.String)">
+            <summary>
+            Validate the ServerId and Api Key pair prior before sending to the Injection API.
+            </summary>
+            <param name="serverId">Your SocketLabs ServerId number.</param>
+            <param name="apiKey">Your SocketLabs Injection API key.</param>
+            <returns>A <c>SendResponse</c> with the validation results</returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.SendValidator">
+            <summary>
+            Used by the <c>SocketLabsClient</c> to conduct basic validation on the message before sending to the Injection API.
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Core.SendValidator.MaximumRecipientsPerMessage">
+            <summary>
+            Maximum recipient threshold 
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.ValidateMessage(SocketLabs.InjectionApi.Message.IBasicMessage)">
+            <summary>
+            Validate a basic email message before sending to the Injection API.
+            </summary>
+            <param name="message">An <c>IBasicMessage</c> object to be sent.</param> 
+            <returns>A <c>SendResponse</c> with the validation results</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.ValidateMessage(SocketLabs.InjectionApi.Message.IBulkMessage)">
+            <summary>
+            Validate a bulk email message before sending to the Injection API.
+            </summary>
+            <param name="message">An <c>IBulkMessage</c> object to be sent.</param>
+            <returns>A <c>SendResponse</c> with the validation results</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.ValidateCredentials(System.Int32,System.String)">
+            <summary>
+            Validate the ServerId and Api Key pair prior before sending to the Injection API.
+            </summary>
+            <param name="serverId">Your SocketLabs ServerId number.</param>
+            <param name="apiKey">Your SocketLabs Injection API key.</param>
+            <returns>A <c>SendResponse</c> with the validation results</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.ValidateIMessageBase(SocketLabs.InjectionApi.Message.IMessageBase)">
+            <summary>
+            Validate the required fields of a message. Fields validated are Subject, From Address, Reply To (if set), Message Body, and Custom Headers (if set)
+            </summary>
+            <param name="message">The base interface, <c>IMessageBase</c>, of the message to be sent.</param>
+            <returns>The validation result as <c>SendResult</c> </returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.HasSubject(SocketLabs.InjectionApi.Message.IMessageBase)">
+            <summary>
+            Check if the message has a subject 
+            </summary>
+            <param name="message">The base interface, <c>IMessageBase</c>, of the message to be sent.</param>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.HasFromAddress(SocketLabs.InjectionApi.Message.IMessageBase)">
+            <summary>
+            Check if the message has a valid From Email Address
+            </summary>
+            <param name="message">The base interface, <c>IMessageBase</c>, of the message to be sent.</param>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.HasMessageBody(SocketLabs.InjectionApi.Message.IMessageBase)">
+            <summary>
+            Check if the message has a Message Body
+            </summary>
+            <remarks>
+            If an Api Template is specified it will override the HtmlBody, the AmpBody and/or the PlainTextBody.
+            If no Api Template is specified the HtmlBody and/or the PlainTextBody must be set
+            </remarks>
+            <param name="message">The base interface, <c>IMessageBase</c>, of the message to be sent.</param>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.HasApiTemplate(SocketLabs.InjectionApi.Message.IMessageBase)">
+            <summary>
+            Check if an ApiTemplate was specified and is valid
+            </summary>
+            <param name="message">The base interface, <c>IMessageBase</c>, of the message to be sent.</param>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.HasValidReplyTo(SocketLabs.InjectionApi.Message.IMessageBase)">
+            <summary>
+            If set, check if a ReplyTo email address is valid
+            </summary>
+            <param name="message">The base interface, <c>IMessageBase</c>, of the message to be sent.</param>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.ValidateRecipients(SocketLabs.InjectionApi.Message.IBasicMessage)">
+            <summary>
+            Validate email recipients for a basic message
+            </summary>
+            <remarks>
+            Checks the To, Cc, and the Bcc recipient fields (List of <c>IEmailAddress</c>) for the following:
+            <list type="bullet">
+            <item>
+            <description>At least 1 recipient is in the list.</description>
+            </item>
+            <item>
+            <description>Cumulative count of recipients in all 3 lists do not exceed the <c>MaximumRecipientsPerMessage</c>.</description>
+            </item>
+            <item>
+            <description>Recipients in lists are valid.</description>
+            </item>
+            </list>
+             If errors are found, the <c>SendResponse</c> will contain the invalid email addresses
+            </remarks>
+            <param name="message">An <c>IBasicMessage</c> object to be sent.</param> 
+            <returns>A <c>SendResponse</c> with the validation results</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.ValidateRecipients(SocketLabs.InjectionApi.Message.IBulkMessage)">
+            <summary>
+            Validate email recipients for a bulk message
+            </summary>
+            <remarks>
+            Checks the To recipient field (List of <c>IBulkRecipient</c>) for the following:
+            <list type="bullet">
+            <item>
+            <description>At least 1 recipient is in the list.</description>
+            </item>
+            <item>
+            <description>Recipients in list do not exceed the <c>MaximumRecipientsPerMessage</c>.</description>
+            </item>
+            <item>
+            <description>Recipients in list are valid.</description>
+            </item>
+            </list>
+             If errors are found, the <c>SendResponse</c> will contain the invalid email addresses
+            </remarks>
+            <param name="message">An <c>IBulkMessage</c> object to be sent.</param> 
+            <returns>A <c>SendResponse</c> with the validation results</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.GetFullRecipientCount(SocketLabs.InjectionApi.Message.IBasicMessage)">
+            <summary>
+            Cumulative count of recipients in all 3 recipient lists To, Cc, and Bcc (List of <c>IEmailAddress</c>)
+            </summary>
+            <param name="message">An <c>IBasicMessage</c> object to be sent.</param> 
+            <returns></returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.HasInvalidRecipients(SocketLabs.InjectionApi.Message.IBasicMessage)">
+            <summary>
+            Check all 3 recipient lists To, Cc, and Bcc (List of <c>IEmailAddress</c>) for valid email addresses
+            </summary>
+            <param name="message">An <c>IBasicMessage</c> object to be sent.</param> 
+            <returns>A List of <c>AddressResult</c> if an invalid email address is found.</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.HasInvalidRecipients(SocketLabs.InjectionApi.Message.IBulkMessage)">
+            <summary>
+            Check the To recipient list (List of <c>IEmailAddress</c>) for valid email addresses
+            </summary>
+            <param name="message">An <c>IBulkMessage</c> object to be sent.</param> 
+            <returns>A List of <c>AddressResult</c> if an invalid email address is found.</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.FindInvalidRecipients(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IEmailAddress})">
+            <summary>
+            Check <c><![CDATA[ IList<IEmailAddress> ]]></c> for valid email addresses
+            </summary>
+            <param name="recipients"><c><![CDATA[ IList<IEmailAddress> ]]></c> to validate</param>
+            <returns>A <c><![CDATA[ List<AddressResult> ]]></c> if an invalid email address is found.</returns>
+            <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/>
+            <see cref="T:SocketLabs.InjectionApi.AddressResult"/>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.FindInvalidRecipients(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IBulkRecipient})">
+            <summary>
+            Check <c><![CDATA[ IList<IBulkRecipient> ]]></c> for valid email addresses
+            </summary>
+            <param name="recipients"><c><![CDATA[ IList<IBulkRecipient> ]]></c> to validate</param>
+            <returns>A <c><![CDATA[ List<AddressResult> ]]></c> if an invalid email address is found.</returns>
+            <see cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/>
+            <see cref="T:SocketLabs.InjectionApi.AddressResult"/>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.SendValidator.HasValidCustomHeaders(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.ICustomHeader})">
+            <summary>
+            Check if <c>ICustomHeader</c> in List are valid
+            </summary>
+            <param name="customHeaders"><c><![CDATA[ IList<ICustomHeader> ]]></c> to validate</param>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.Serialization.AddressJson">
+            <summary>
+            Represents an individual email address for a message.
+            To be serialized into JSON string before sending to the Injection Api.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.AddressJson.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the AddressJson class and sets the email address.
+            </summary>
+            <param name="emailAddress">A valid email address</param>
+            <param name="friendlyName">The friendly or display name for the recipient.</param>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.AddressJson.EmailAddress">
+            <summary>
+            A valid email address
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.AddressJson.FriendlyName">
+            <summary>
+            The friendly or display name for the recipient.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.Serialization.AttachmentJson">
+            <summary>
+            Represents a message attachment in the form of a byte array.
+            To be serialized into JSON string before sending to the Injection Api.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.AttachmentJson.Name">
+            <summary>
+            Name of attachment (displayed in email clients)
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.AttachmentJson.Content">
+            <summary>
+            The BASE64 encoded string containing the contents of an attachment.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.AttachmentJson.ContentId">
+            <summary>
+            When set, used to embed an image within the body of an email message.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.AttachmentJson.ContentType">
+            <summary>
+            The ContentType (MIME type) of the attachment.
+            </summary>
+            <example>text/plain, image/jpeg, </example>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.AttachmentJson.CustomHeaders">
+            <summary>
+            A list of custom headers added to the attachment.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.Serialization.CustomHeadersJson">
+            <summary>
+            Represents a custom header as a name and value pair.
+            To be serialized into JSON string before sending to the Injection Api.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.CustomHeadersJson.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the CustomHeaderJson class and sets the name and value pair.
+            </summary>
+            <param name="name">The name of your custom header.</param>
+            <param name="value">The value for your custom header.</param>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.CustomHeadersJson.Name">
+            <summary>
+            Gets or sets the custom header name.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.CustomHeadersJson.Value">
+            <summary>
+            Gets or sets the custom header value.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.Serialization.InjectionRequest">
+            <summary>
+            Represents a injection request for sending to the Injection Api.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.InjectionRequest.ServerId">
+            <summary>
+            Your SocketLabs ServerId number.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.InjectionRequest.ApiKey">
+            <summary>
+            Your SocketLabs Injection API key.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.InjectionRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            Creates a new instance of the <c>InjectionRequest</c> class.
+            </summary>
+            <param name="serverId">Your SocketLabs ServerId number.</param>
+            <param name="apiKey">Your SocketLabs Injection API key.</param>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.InjectionRequest.Messages">
+            <summary>
+            Gets or sets the list of messages to be sent.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.InjectionRequest.GetAsJson">
+            <summary>
+            Get the InjectionRequest object serialized into a JSON string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.Serialization.InjectionResponseDto">
+            <summary>
+            Data transfer object representing the Injection Api response.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.InjectionResponseDto.ErrorCode">
+            <summary>
+            The resulting response ErrorCode of the Injection Api send request
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.InjectionResponseDto.TransactionReceipt">
+            <summary>
+            A unique key generated by the Injection API if an unexpected error occurs during the SocketLabsClient send request.
+            This unique key can be used by SocketLabs support to troubleshoot the issue.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.InjectionResponseDto.MessageResults">
+            <summary>
+            An array of MessageResultDto objects that contain the status of each message sent.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.Serialization.MergeDataJson">
+            <summary>
+            Represents MergeData for a single message.
+            To be serialized into JSON string before sending to the Injection Api.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MergeDataJson.#ctor">
+            <summary>
+            Creates a new instance of the MergeDataJson class.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MergeDataJson.PerMessage">
+            <summary>
+            Defines merge field data for each message.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MergeDataJson.Global">
+            <summary>
+            Defines merge field data for all messages in the request.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MergeDataJson.ShouldSerializePerMessage">
+            <summary>
+            Check if per message merge fields should be serialized.
+            </summary>
+            <remarks>
+            Don't serialize the collection if they are null or empty.
+            https://www.newtonsoft.com/json/help/html/ConditionalProperties.htm
+            </remarks>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MergeDataJson.ShouldSerializeGlobal">
+            <summary>
+            Check if global merge fields should be serialized. Don't serialize the collection if they are null or empty.
+            </summary>
+            <remarks>
+            Don't serialize the collection if they are null or empty.
+            https://www.newtonsoft.com/json/help/html/ConditionalProperties.htm
+            </remarks>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.Serialization.MergeFieldJson">
+            <summary>
+            Represents a merge field as a field and value pair.
+            To be serialized into JSON string before sending to the Injection Api.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MergeFieldJson.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the MergeFieldJson class and sets the field and value pair.
+            </summary>
+            <param name="field">The field of your merge field.</param>
+            <param name="value">The value for your merge field.</param>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MergeFieldJson.Field">
+            <summary>
+            Gets or sets the merge field. 
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MergeFieldJson.Value">
+            <summary>
+            Gets or sets the merge field value.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.Serialization.MessageJson">
+            <summary>
+            Represents a message for sending to the Injection Api.
+            To be serialized into JSON string before sending to the Injection Api.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MessageJson.#ctor">
+            <summary>
+            Creates a new instance of the MessageJson class.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.To">
+            <summary>
+            Gets or sets the list of To recipients.
+            </summary> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.From">
+            <summary>
+            Gets or sets the From address.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.Subject">
+            <summary>
+            Gets or sets the instance of the message Subject.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.TextBody">
+            <summary>
+            Gets or sets the plain text portion of the message body.        
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.HtmlBody">
+            <summary>
+            Gets or sets the HTML portion of the message body.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.AmpBody">
+            <summary>
+            Gets or sets the AMP portion of the message body.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.ApiTemplate">
+            <summary>
+            Gets or sets the Api Template for the message.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.MailingId">
+            <summary>
+            Gets or sets the custom MailingId for the message.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.MessageId">
+            <summary>
+            Gets or sets the custom MessageId for the message.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.CharSet">
+            <summary>
+            The optional character set for your message.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.CustomHeaders">
+            <summary>
+            A list of custom message headers added to the message.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.Cc">
+            <summary>
+            Gets or sets the list of CC recipients.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.Bcc">
+            <summary>
+            Gets or sets the list of BCC recipients.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.ReplyTo">
+            <summary>
+            Gets or sets the Reply To address.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.Attachments">
+            <summary>
+            Gets or sets the list of attachments.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageJson.MergeData">
+            <summary>
+            Gets or sets the list of merge data.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MessageJson.ShouldSerializeTo">
+            <summary>
+            Check if ro recipients should be serialized.
+            </summary>
+            <remarks>
+            Don't serialize the collection if they are null or empty.
+            https://www.newtonsoft.com/json/help/html/ConditionalProperties.htm
+            </remarks>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MessageJson.ShouldSerializeCc">
+            <summary>
+            Check if cc recipients should be serialized.
+            </summary>
+            <remarks>
+            Don't serialize the collection if they are null or empty.
+            https://www.newtonsoft.com/json/help/html/ConditionalProperties.htm
+            </remarks>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MessageJson.ShouldSerializeBcc">
+            <summary>
+            Check if bcc recipients should be serialized.
+            </summary>
+            <remarks>
+            Don't serialize the collection if they are null or empty.
+            https://www.newtonsoft.com/json/help/html/ConditionalProperties.htm
+            </remarks>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MessageJson.ShouldSerializeMergeData">
+            <summary>
+            Check if merge data should be serialized.
+            </summary>
+            <remarks>
+            Don't serialize the collection if they are null or empty.
+            https://www.newtonsoft.com/json/help/html/ConditionalProperties.htm
+            </remarks>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Core.Serialization.MessageJson.ShouldSerializeAttachment">
+            <summary>
+            Check if attachments should be serialized.
+            </summary>
+            <remarks>
+            Don't serialize the collection if they are null or empty.
+            https://www.newtonsoft.com/json/help/html/ConditionalProperties.htm
+            </remarks>
+            <returns><c>bool</c> result</returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Core.Serialization.MessageResultDto">
+            <summary>
+            Data transfer object representing a message result from the Injection Api.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageResultDto.Index">
+            <summary>
+            Index of message being sent. 
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageResultDto.ErrorCode">
+            <summary>
+            The resulting response ErrorCode of the Injection Api send request
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Core.Serialization.MessageResultDto.AddressResults">
+            <summary>
+            An array of AddressResult objects that contain the status of each address that failed. If no messages failed this array is empty.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.ISocketLabsClient">
+            <summary>
+            ISocketLabs client is an interface that defines the SocketLabs Injection API client
+            and its public methods.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.ISocketLabsClient.SendAsync(SocketLabs.InjectionApi.Message.IBasicMessage)">
+            <summary>
+            Asynchronously sends a basic email message and returns the response from the Injection API.
+            </summary>
+            <param name="message">A <c>BasicMessage</c> object to be sent.</param> 
+            <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.ISocketLabsClient.SendAsync(SocketLabs.InjectionApi.Message.IBulkMessage)">
+            <summary>
+            Asynchronously sends a bulk email message and returns the response from the Injection API.
+            </summary>
+            <param name="message">A <c>BulkMessage</c> object to be sent.</param>
+            <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.ISocketLabsClient.Send(SocketLabs.InjectionApi.Message.IBasicMessage)">
+            <summary>
+            Synchronously sends a basic email message and returns the response from the Injection API.
+            </summary>
+            <param name="message">A <c>BasicMessage</c> object to be sent.</param> 
+            <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.ISocketLabsClient.Send(SocketLabs.InjectionApi.Message.IBulkMessage)">
+            <summary>
+            Synchronously sends a bulk email message and returns the response from the Injection API.
+            </summary>
+            <param name="message">A <c>BulkMessage</c> object to be sent.</param>
+            <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.Attachment">
+            <summary>
+            Represents a message attachment in the form of a byte array.
+            </summary>
+            <example>
+            Using the constructors
+            <code>
+            var attachment1 = new Attachment(@"c:\bus.png"); 
+            var attachment2 = new Attachment("bus", "image/png", @"c:\bus.png"); 
+            var attachment3 = new Attachment("bus", "image/png", new byte[] { }); 
+            var attachment4 = new Attachment("bus", "image/png", File.OpenRead(@"c:\bus.png"));
+            </code>
+            
+            Adding CustomHeaders (<see cref="T:SocketLabs.InjectionApi.Message.CustomHeader"/>) to an attachment
+            <code>
+            var attachment = new Attachment(@"c:\bus.png"); 
+            attachment.CustomHeaders.Add(new CustomHeader("Color", "Orange"));
+            attachment.CustomHeaders.Add(new CustomHeader("Place", "Beach"));
+            </code>
+            </example>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.IAttachment"/>
+            <seealso cref="T:SocketLabs.InjectionApi.SocketLabsExtensions"/>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.Attachment.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SocketLabs.InjectionApi.Message.Attachment"/> class
+            </summary>
+            <example>
+            <code>
+            var attachment = new Attachment();
+            attachment.Name = Path.GetFileName(@"c:\bus.png");
+            attachment.Content = File.ReadAllBytes(@"c:\bus.png");
+            attachment.MimeType = "image/png";
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.Attachment.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SocketLabs.InjectionApi.Message.Attachment"/> class
+            </summary>
+            <param name="filePath">The path to your attachment on your local system.</param>
+            <example>
+            <code>
+            var attachment1 = new Attachment(@"c:\bus.png"); 
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.Attachment.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SocketLabs.InjectionApi.Message.Attachment"/> class
+            </summary>
+            <param name="name">The name for your attachment.</param>
+            <param name="mimeType">The MIME type for your attachment.</param>
+            <param name="filePath">The path to your attachment on your local system.</param>
+            <example>
+            <code>
+            var attachment = new Attachment("bus", "image/png", @"c:\bus.png"); 
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.Attachment.#ctor(System.String,System.String,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SocketLabs.InjectionApi.Message.Attachment"/> class
+            </summary>
+            <param name="name">The name for your attachment.</param>
+            <param name="mimeType">The MIME type for your attachment.</param>
+            <param name="content">A byte array containing the attachment content.</param>
+            <example>
+            <code>
+            var attachment = new Attachment("bus", "image/png", new byte[] { }); 
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.Attachment.#ctor(System.String,System.String,System.IO.Stream)">
+            <summary>
+            Creates a new instance of the Attachment class.
+            </summary>
+            <param name="name">The name for your attachment.</param>
+            <param name="mimeType">The MIME type for your attachment.</param>
+            <param name="stream">A file stream containing the attachment content.</param>
+            <example>
+            <code>
+            var attachment = new Attachment("bus", "image/png", File.OpenRead(@"c:\bus.png"));
+            </code>
+            </example>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.Attachment.Name">
+            <summary>
+            Name of attachment (displayed in email clients)
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.Attachment.MimeType">
+            <summary>
+            The MIME type of the attachment.
+            </summary>
+            <example>text/plain, image/jpeg, </example>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.Attachment.ContentId">
+            <summary>
+            When set, used to embed an image within the body of an email message.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.Attachment.Content">
+            <summary>
+            The BASE64 encoded string containing the contents of an attachment.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.Attachment.CustomHeaders">
+            <summary>
+            A list of custom headers added to the attachment.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.Attachment.GetMimeTypeFromExtension(System.String)">
+            <summary>
+            Converts the file extension to the correct mime type. This is a small subset of more common used formats.
+            </summary>
+            <param name="extension">file extension of the attachment</param>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.Attachment.ToString">
+            <summary>
+            Represents the attachment by name and mime type, useful for debugging.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.BasicMessage">
+             <summary>
+             A basic email message similar to one created in a personal email client such as Outlook.
+             This message can have many recipients of different types, such as To, CC, and BCC.  This
+             message does not support merge fields.
+             </summary>
+             <example>
+             <code>
+             var message = new BasicMessage();
+            
+             message.PlainTextBody = "This is the body of my message sent to ##Name##";
+             message.HtmlBody = "<![CDATA[ <html> ]]>This is the HtmlBody of my message sent to ##Name##<![CDATA[ </html> ]]>";
+             message.AmpBody = "<![CDATA[ <!doctype html> ]]>" +
+                             "<![CDATA[ <html amp4email> ]]>" +
+                             "<![CDATA[ <head> ]]>" +
+                             "  <![CDATA[ <meta charset=\"utf-8\"> ]]>" +
+                             "  <![CDATA[ <script async src=\"https://cdn.ampproject.org/v0.js\"> ]]><![CDATA[ </style> ]]>" +
+                             "  <![CDATA[ <style amp4email-boilerplate> ]]>body{visibility:hidden}<![CDATA[ </style> ]]>" +
+                             "  <![CDATA[ <style amp-custom> ]]>" +
+                             "    h1 {" +
+                             "      margin: 1rem;" +
+                             "    }" +
+                             "  <![CDATA[ </style> ]]>" +
+                             "<![CDATA[ </head> ]]>" +
+                             "<![CDATA[ <body> ]]>" +
+                             "  <![CDATA[ <h1> ]]>This is the AMP Html Body of my message<![CDATA[ </h1> ]]>" +
+                             "<![CDATA[ </body> ]]>" +
+                             "<![CDATA[ </html> ]]>";
+             message.Subject = "Sending a test message";
+             message.From.Email = "from@example.com";
+            
+             var email1 = new EmailAddress("recipient1@example.com");
+             message.To.Add(email1);
+             
+             var email2 = new EmailAddress("recipient2@example.com", "Recipient #2");
+             message.To.Add(email2); 
+            </code>
+             </example>
+             <seealso cref="T:SocketLabs.InjectionApi.Message.IMessageBase"/>
+             <seealso cref="T:SocketLabs.InjectionApi.Message.IBasicMessage"/>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.Subject">
+            <summary>
+            Gets or sets the instance of the message Subject.
+            </summary>
+            <remarks>
+            (Required )
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.PlainTextBody">
+            <summary>
+            Gets or sets the plain text portion of the message body.        
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.HtmlBody">
+            <summary>
+            Gets or sets the HTML portion of the message body.
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.AmpBody">
+            <summary>
+            Gets or sets the AMP portion of the message body.
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+            See https://amp.dev/documentation/ for more information on AMP implementation
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.ApiTemplate">
+            <summary>
+            Gets or sets the Api Template for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used or use a ApiTemplate with the AmpBody 
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.MailingId">
+            <summary>
+            Gets or sets the custom MailingId for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            See https://www.socketlabs.com/blog/best-practices-for-using-custom-mailingids-and-messageids/ for more information.
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.MessageId">
+            <summary>
+            Gets or sets the custom MessageId for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.From">
+            <summary>
+            Gets or sets the From address.
+            </summary>
+            <remarks>
+            (Required)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.ReplyTo">
+            <summary>
+            Gets or sets the Reply To address.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.To">
+            <summary>
+            Gets or sets the list of To recipients.
+            </summary> 
+            <remarks>
+            (Required)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.Cc">
+            <summary>
+            Gets or sets the list of CC recipients.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.Bcc">
+            <summary>
+            Gets or sets the list of BCC recipients.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.Attachments">
+            <summary>
+            Gets or sets the list of attachments.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.CharSet">
+            <summary>
+            The optional character set for your message.
+            </summary>
+            <remarks>
+            (Optional) Default is UTF8
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BasicMessage.CustomHeaders">
+            <summary>
+            A list of custom message headers added to the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.BasicMessage.ToString">
+            <summary>
+            Returns the number of recipients and subject for the message, useful for debugging.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.BulkMessage">
+             <summary>
+             A bulk message usually contains a single recipient per message 
+             and is generally used to send the same content to many recipients, 
+             optionally customizing the message via the use of MergeData.
+             </summary>
+             <example>
+             <code>
+             var message = new BulkMessage();
+            
+             message.PlainTextBody = "This is the body of my message sent to ##Name##";
+             message.HtmlBody = "<![CDATA[ <html> ]]>This is the HtmlBody of my message sent to ##Name##<![CDATA[ </html> ]]>";
+             message.AmpBody = "<![CDATA[ <!doctype html> ]]>" +
+                             "<![CDATA[ <html amp4email> ]]>" +
+                             "<![CDATA[ <head> ]]>" +
+                             "  <![CDATA[ <meta charset=\"utf-8\"> ]]>" +
+                             "  <![CDATA[ <script async src=\"https://cdn.ampproject.org/v0.js\"> ]]><![CDATA[ </style> ]]>" +
+                             "  <![CDATA[ <style amp4email-boilerplate> ]]>body{visibility:hidden}<![CDATA[ </style> ]]>" +
+                             "  <![CDATA[ <style amp-custom> ]]>" +
+                             "    h1 {" +
+                             "      margin: 1rem;" +
+                             "    }" +
+                             "  <![CDATA[ </style> ]]>" +
+                             "<![CDATA[ </head> ]]>" +
+                             "<![CDATA[ <body> ]]>" +
+                             "  <![CDATA[ <h1> ]]>This is the AMP Html Body of my message<![CDATA[ </h1> ]]>" +
+                             "<![CDATA[ </body> ]]>" +
+                             "<![CDATA[ </html> ]]>";
+             message.Subject = "Sending a test message";
+             message.From.Email = "from@example.com";
+            
+             var email1 = new BulkRecipient("recipient1@example.com");
+             message.To.Add(email1);
+             
+             var email2 = new BulkRecipient("recipient2@example.com", "Recipient #2");
+             message.To.Add(email2);
+            
+             var globalMergeData = new Dictionary<![CDATA[ <string, string> ]]>();
+             
+             globalMergeData.Add("name1", "value1");
+             globalMergeData.Add("name2", "value2");
+            
+             message.GlobalMergeData = globalMergeData;
+            </code>
+             </example>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.Subject">
+            <summary>
+            Gets or sets the instance of the message Subject.
+            </summary>
+            <remarks>
+            (Required )
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.PlainTextBody">
+            <summary>
+            Gets or sets the plain text portion of the message body.        
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.HtmlBody">
+            <summary>
+            Gets or sets the HTML portion of the message body.
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.AmpBody">
+            <summary>
+            Gets or sets the AMP HTML portion of the message body.
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+            See https://amp.dev/documentation/ for more information on AMP implementation
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.ApiTemplate">
+            <summary>
+            Gets or sets the Api Template for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used or use a ApiTemplate with the AmpBody 
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.MailingId">
+            <summary>
+            Gets or sets the custom MailingId for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            See https://www.socketlabs.com/blog/best-practices-for-using-custom-mailingids-and-messageids/ for more information.
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.MessageId">
+            <summary>
+            Gets or sets the custom MessageId for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.From">
+            <summary>
+            Gets or sets the From address of the message.
+            </summary>
+            <remarks>
+            (Required)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.ReplyTo">
+            <summary>
+            Gets or sets the Reply To address for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.To">
+            <summary>
+            Gets or sets the list of To recipients for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.Attachments">
+            <summary>
+            A list of file attachments for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.GlobalMergeData">
+            <summary>
+            A dictionary containing MergeData items that will be global across the whole message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.CharSet">
+            <summary>
+            The optional character set for your message.
+            </summary>
+            <remarks>
+            (Optional) Default is UTF8
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkMessage.CustomHeaders">
+            <summary>
+            A list of custom message headers added to the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.BulkMessage.ToString">
+            <summary>
+            Returns the number of recipients and subject for the message, useful for debugging.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.BulkRecipient">
+             <summary>
+             Represents an individual recipient for a message.
+             </summary>
+             <example>
+             Using the constructors
+             <code>
+             var email1 = new BulkRecipient("recipient1@example.com");
+             email1.MergeData.Add("key1", "value1");
+             email1.MergeData.Add("key2", "value2");
+            
+             var mergeDataFor2 = new <![CDATA[ Dictionary<string, string> ]]>();
+             mergeDataFor2.Add("key1", "value1");
+             mergeDataFor2.Add("key2", "value2"); 
+             var email2 = new BulkRecipient("recipient2@example.com", "Recipient #2", mergeDataFor2);
+             
+             var email3 = new BulkRecipient("recipient3@example.com", "Recipient #3");
+             email3.AddMergeFields("key1", "value1");
+             email3.AddMergeFields("key2", "value2");
+             
+             </code>
+             Using extension methods
+             <code>
+             var email3 = new BulkRecipient();
+             email3.Set("recipient1@example.com");
+             
+             var email4 = new BulkRecipient();
+             email4.Set("recipient4@example.com", "Recipient #4");
+             </code>
+             </example>
+             <seealso cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/>
+             <seealso cref="T:SocketLabs.InjectionApi.SocketLabsExtensions"/>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.BulkRecipient.#ctor(System.String)">
+             <summary>
+             Creates a new instance of the BulkRecipient class and sets the email address.
+             </summary>
+             <param name="email">The email address for your bulk recipient.</param>
+             <example>
+            <code> 
+             var email = new BulkRecipient("recipient@example.com");
+             </code>
+             </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.BulkRecipient.#ctor(System.String,System.String)">
+             <summary>
+             Creates a new instance of the BulkRecipient class and sets the email address and friendly name.
+             </summary>
+             <param name="email">The email address for your bulk recipient.</param>
+             <param name="friendlyName">The friendly name for your bulk recipient.</param>
+             <example>
+            <code> 
+             var email = new BulkRecipient("recipient@example.com", "Recipient");
+             </code>
+             </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.BulkRecipient.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+             <summary>
+             Creates a new instance of the BulkRecipient class and sets the email address and merge data properties.. 
+             </summary>
+             <param name="email">The email address for your bulk recipient.</param>
+             <param name="mergeData">Merge data unique to the instance of the bulk recipient.</param>
+             <example>
+            <code>
+             var mergeData = new <![CDATA[ Dictionary<string, string> ]]>();
+             mergeData.Add("key1", "value1");
+             mergeData.Add("key2", "value2");
+             
+             var email = new BulkRecipient("recipient@example.com", mergeData);
+             </code>
+             </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.BulkRecipient.#ctor(System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+             <summary>
+             Creates a new instance of the BulkRecipient class and sets the email address, friendly name and merge data properties.. 
+             </summary>
+             <param name="email">The email address for your bulk recipient.</param>
+             <param name="friendlyName">The friendly name for your bulk recipient.</param>
+             <param name="mergeData">Merge data unique to the instance of the bulk recipient.</param>
+             <example>
+            <code>
+             var mergeData = new <![CDATA[ Dictionary<string, string> ]]>();
+             mergeData.Add("key1", "value1");
+             mergeData.Add("key2", "value2");
+             
+             var email = new BulkRecipient("recipient@example.com", "Recipient", mergeData);
+             </code>
+             </example>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkRecipient.Email">
+            <summary>
+            A valid email address
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkRecipient.FriendlyName">
+            <summary>
+            The friendly or display name for the recipient.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkRecipient.MergeData">
+            <summary>
+            A dictionary containing MergeData items unique to the recipient.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.BulkRecipient.IsValid">
+            <summary>
+            Determines if the Email Address is valid.
+            </summary>
+            <returns>True if valid and false if not.</returns>
+            <remarks>
+            Does simple syntax validation on the address.
+            </remarks>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.BulkRecipient.ToString">
+            <summary>
+            Represents the email address as a string similar to how it would look in an email client.  Useful for debugging.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.CustomHeader">
+             <summary>
+             Represents a custom header as a name and value pair.
+             </summary>
+             <example>
+             Using the constructors
+             <code>
+             var header1 = new CustomHeader();
+             header1.Name = "name1";
+             header1.Value = "value1";
+            
+             var header2 = new CustomHeader("name1", "value1");
+             </code>
+             Using extension methods
+             <code>
+             var headers = new <![CDATA[ List<ICustomHeader> ]]>();
+             headers.Add("name1", "value1");
+             headers.Add("name2", "value2");
+             </code>
+             </example>
+             <seealso cref="T:SocketLabs.InjectionApi.Message.ICustomHeader"/>
+             <seealso cref="T:SocketLabs.InjectionApi.SocketLabsExtensions"/>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.CustomHeader.#ctor">
+            <summary>
+            Creates a new instance of the CustomHeader class.
+            </summary>
+            <example>
+            <code>
+            var header1 = new CustomHeader();
+            header1.Name = "name1";
+            header1.Value = "value1";
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.CustomHeader.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the CustomHeader class and sets the name and value pair.
+            </summary>
+            <param name="name">The name of your custom header.</param>
+            <param name="value">The value for your custom header.</param>
+            <example>
+            <code>
+            var header2 = new CustomHeader("name1", "value1");
+            </code>
+            </example>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.CustomHeader.Name">
+            <summary>
+            Gets or sets the custom header name.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.CustomHeader.Value">
+            <summary>
+            Gets or sets the custom header value.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.CustomHeader.IsValid">
+            <summary>
+            A quick check to ensure that the custom header is valid.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.CustomHeader.ToString">
+            <summary>
+            Returns the custom header as a name-value pair, useful for debugging.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.EmailAddress">
+            <summary>
+            Represents an individual email address for a message.
+            </summary>
+            <example>
+            Using the constructors
+            <code>
+            var email1 = new EmailAddress("recipient1@example.com");
+            var email2 = new EmailAddress("recipient2@example.com", "Recipient #2");
+            </code>
+            Using extension methods
+            <code>
+            var email3 = new EmailAddress();
+            email3.Set("recipient1@example.com");
+            
+            var email4 = new EmailAddress();
+            email4.Set("recipient4@example.com", "Recipient #4");
+            </code>
+            </example>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/>
+            <seealso cref="T:SocketLabs.InjectionApi.SocketLabsExtensions"/>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.EmailAddress.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/> class.
+            </summary>
+            <example>
+            Using the constructors
+            <code>
+            var email = new EmailAddress();
+            </code> 
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.EmailAddress.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/> class and sets the email address.
+            </summary>
+            <param name="email">A valid email address</param>
+            <example>
+            Using the constructors
+            <code>
+            var email = new EmailAddress("recipient@example.com");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.EmailAddress.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the email address class and sets the email address and the friendly name.
+            </summary>
+            <param name="email">A valid email address</param>
+            <param name="friendlyName">The friendly or display name for the recipient.</param>
+            <example>
+            Using the constructors
+            <code>
+            var email = new EmailAddress("recipient@example.com", "Recipient");
+            </code>
+            </example>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.EmailAddress.Email">
+            <summary>
+            A valid email address
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.EmailAddress.FriendlyName">
+            <summary>
+            The friendly or display name for the recipient.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.EmailAddress.IsValid">
+            <summary>
+            Determines if the Email Address is valid.
+            </summary>
+            <returns>True if valid and false if not.</returns>
+            <remarks>
+            Does simple syntax validation on the address.
+            </remarks>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.Message.EmailAddress.ToString">
+            <summary>
+            Represents the email address as a string similar to how it would look in an email client.  Useful for debugging.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.IAttachment">
+            <summary>
+            Represents a message attachment in the form of a byte array.
+            </summary>
+            <example>
+            Using extension methods
+            <code>
+            var attachmentList = new <c><![CDATA[ List<IAttachment> ]]></c>();
+            attachmentList.Add(@"c:\bus.png"); 
+            attachmentList.Add("bus", "image/png", @"c:\bus.png"); 
+            attachmentList.Add("bus", "image/png", new byte[] { }); 
+            attachmentList.Add("bus", "image/png", File.OpenRead(@"c:\bus.png"));
+            
+            var attachment = await message.Attachments.AddAsync("bus.png", "image/png", @".\examples\img\bus.png");
+            </code>
+            </example>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.Attachment"/>
+            <seealso cref="T:SocketLabs.InjectionApi.SocketLabsExtensions"/>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IAttachment.Content">
+            <summary>
+            The BASE64 encoded string containing the contents of an attachment.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IAttachment.ContentId">
+            <summary>
+            When set, used to embed an image within the body of an email message.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IAttachment.MimeType">
+            <summary>
+            The MIME type of the attachment.
+            </summary>
+            <example>text/plain, image/jpeg, </example>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IAttachment.Name">
+            <summary>
+            Name of attachment (displayed in email clients)
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IAttachment.CustomHeaders">
+            <summary>
+            A list of custom headers added to the attachment.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.IBasicMessage">
+            <summary>
+            A basic email message similar to one created in a personal email client such as Outlook.
+            This message can have many recipients of different types, such as To, CC, and BCC.  This
+            message does not support merge fields.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IBasicMessage.To">
+            <summary>
+            Gets or sets the list of To recipients.
+            </summary>
+            <remarks>
+            (Required)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IBasicMessage.Cc">
+            <summary>
+            Gets or sets the list of CC recipients.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IBasicMessage.Bcc">
+            <summary>
+            Gets or sets the list of BCC recipients.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.IBulkMessage">
+            <summary>
+            A bulk message usually contains a single recipient per message 
+            and is generally used to send the same content to many recipients, 
+            optionally customizing the message via the use of MergeData.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IBulkMessage.To">
+            <summary>
+            Gets or sets the list of To recipients.
+            </summary>
+            <remarks>
+            (Required)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IBulkMessage.GlobalMergeData">
+            <summary>
+            A dictionary containing MergeData items that will be global across the whole message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.IBulkRecipient">
+            <summary>
+            Represents an individual recipient for a message including MergeData for a recipient.
+            </summary>
+            <example>
+            Using extension methods available for an <c><![CDATA[ IList<IBulkRecipient> ]]></c>
+            <code>
+            var emailList = new <![CDATA[ List<IBulkRecipient> ]]>();
+            
+            var email1 = emailList.Add("recipient1@example.com");
+            email1.MergeData.Add("key1", "value1");
+            email1.MergeData.Add("key2", "value2");
+            
+            var email2 = emailList.Add("recipient2@example.com", "Recipient #2");
+            email2.AddMergeFields("key1", "value1");
+            email2.AddMergeFields("key2", "value2");
+            
+            var mergeDataFor3 = new <![CDATA[ Dictionary<string, string> ]]>();
+            mergeDataFor3.Add("key1", "value1");
+            mergeDataFor3.Add("key2", "value2");  
+            var email3 = emailList.Add("recipient3@example.com", mergeDataFor3); 
+            
+            var mergeDataFor4 = new <![CDATA[ Dictionary<string, string> ]]>();
+            mergeDataFor4.Add("key1", "value1");
+            mergeDataFor4.Add("key2", "value2");  
+            var email4 = emailList.Add("recipient4@example.com", "Recipient #4", mergeDataFor4);
+            </code>
+            </example>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.BulkRecipient"/>
+            <seealso cref="T:SocketLabs.InjectionApi.SocketLabsExtensions"/>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IBulkRecipient.Email">
+            <summary>
+            A valid email address
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IBulkRecipient.FriendlyName">
+            <summary>
+            The friendly or display name for the recipient.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IBulkRecipient.IsValid">
+            <summary>
+            Determines if the Email Address is valid.
+            </summary>
+            <returns>True if valid and false if not.</returns>
+            <remarks>
+            Does simple syntax validation on the address.
+            </remarks>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IBulkRecipient.MergeData">
+            <summary>
+            A dictionary containing MergeData items unique to the recipient.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.ICustomHeader">
+            <summary>
+            Represents a custom header as a name and value pair.
+            </summary>
+            <example>
+            Using extension methods
+            <code>
+            var headers = new <![CDATA[ List<ICustomHeader> ]]>();
+            headers.Add("name1", "value1");
+            headers.Add("name2", "value2");
+            </code>
+            </example>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.CustomHeader"/>
+            <seealso cref="T:SocketLabs.InjectionApi.SocketLabsExtensions"/>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.ICustomHeader.Name">
+            <summary>
+            Gets or sets the custom header name.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.ICustomHeader.Value">
+            <summary>
+            Gets or sets the custom header value.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.ICustomHeader.IsValid">
+            <summary>
+            A quick check to ensure that the custom header is valid.
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.IEmailAddress">
+            <summary>
+            Represents an individual email address for a message.
+            </summary>
+            <example> 
+            Using extension methods available for an <c><![CDATA[ IList<IEmailAddress> ]]></c>
+            <code>
+            var emailList = new <![CDATA[ List<IEmailAddress> ]]>();
+            emailList.Add("recipient1@example.com");
+            emailList.Add("recipient2@example.com", "Recipient #2");
+            emailList.Add(new EmailAddress("recipient3@example.com"));
+            emailList.Add(new EmailAddress("recipient4@example.com", "Recipient #4"));
+            </code>
+            </example>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.EmailAddress"/>
+            <seealso cref="T:SocketLabs.InjectionApi.SocketLabsExtensions"/>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IEmailAddress.Email">
+            <summary>
+            A valid email address
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IEmailAddress.FriendlyName">
+            <summary>
+            The friendly or display name for the recipient.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IEmailAddress.IsValid">
+            <summary>
+            Determines if the Email Address is valid.
+            </summary>
+            <returns>True if valid and false if not.</returns>
+            <remarks>
+            Does simple syntax validation on the address.
+            </remarks>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.IMessageBase">
+            <summary>
+            The IMessageBase is an interface that contains fields used by the Injection API and is implemented by all message types.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.Subject">
+            <summary>
+            Gets or sets the instance of the message Subject.
+            </summary>
+            <remarks>
+            (Required )
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.PlainTextBody">
+            <summary>
+            Gets or sets the plain text portion of the message body.        
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.HtmlBody">
+            <summary>
+            Gets or sets the HTML portion of the message body.
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.AmpBody">
+            <summary>
+            Gets or sets the AMP HTML portion of the message body.
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used with the AmpBody or use a ApiTemplate
+            See https://amp.dev/documentation/ for more information on AMP implementation
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.ApiTemplate">
+            <summary>
+            Gets or sets the Api Template for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            Either PlainTextBody or HtmlBody must be used or use a ApiTemplate with the AmpBody
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.MailingId">
+            <summary>
+            Gets or sets the custom MailingId for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            See https://www.socketlabs.com/blog/best-practices-for-using-custom-mailingids-and-messageids/ for more information.
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.MessageId">
+            <summary>
+            Gets or sets the custom MessageId for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.From">
+            <summary>
+            Gets or sets the From address.
+            </summary>
+            <remarks>
+            (Required)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.ReplyTo">
+            <summary>
+            An optional ReplyTo address for the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.Attachments">
+            <summary>
+            Gets or sets the list of attachments.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.CharSet">
+            <summary>
+            The optional character set for your message.
+            </summary>
+            <remarks>
+            (Optional) Default is UTF8
+            </remarks> 
+        </member>
+        <member name="P:SocketLabs.InjectionApi.Message.IMessageBase.CustomHeaders">
+            <summary>
+            A list of custom message headers added to the message.
+            </summary>
+            <remarks>
+            (Optional)
+            </remarks> 
+        </member>
+        <member name="T:SocketLabs.InjectionApi.Message.MimeType">
+            <summary>
+            Common email attachment MIME types
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.BMP">
+            <summary>
+            Bitmap Image File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.CSV">
+            <summary>
+            Comma-separated values (CSV) File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.DOC">
+            <summary>
+            Microsoft Word File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.DOCX">
+            <summary>
+            Microsoft Word File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.GIF">
+            <summary>
+            Gif Image File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.HTML">
+            <summary>
+            HTML document
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.JPEG">
+            <summary>
+            JPEG Image File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.PDF">
+            <summary>
+            Adobe Portable Document Format
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.PNG">
+            <summary>
+            PNG Image File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.PPT">
+            <summary>
+            Microsoft Presentation File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.PPTX">
+            <summary>
+            Microsoft Presentation File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.TEXT">
+            <summary>
+            Plain Text document
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.XLS">
+            <summary>
+            Microsoft Excel File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.XLSX">
+            <summary>
+            Microsoft Excel File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.XML">
+            <summary>
+            XML File
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.Message.MimeType.ZIP">
+            <summary>
+            Zip Archive
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.SendResponse">
+            <summary>
+            The response of an SocketLabsClient send request.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.SendResponse.Result">
+            <summary>
+            The result of the SocketLabsClient send request. 
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.SendResponse.TransactionReceipt">
+            <summary>
+            A unique key generated by the Injection API if an unexpected error occurs during the SocketLabsClient send request.
+            This unique key can be used by SocketLabs support to troubleshoot the issue.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.SendResponse.AddressResults">
+            <summary>
+            An array of AddressResult objects that contain the status of each address that failed. If no messages failed this array is empty.
+            </summary>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.SendResponse.ResponseMessage">
+            <summary>
+            A message detailing why the SocketLabsClient send request failed.
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SendResponse.ToString">
+            <summary>
+            Represents the <c>SendResponse</c> as a string.  Useful for debugging.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.SendResult">
+            <summary>
+            Enumerated result of the client send
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.UnknownError">
+            <summary>
+            An error has occured that was unforeseen
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.Timeout">
+            <summary>
+            A timeout occurred sending the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.Success">
+            <summary>
+            Successful send of message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.Warning">
+            <summary>
+            Warnings were found while sending the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.InternalError">
+            <summary>
+            Internal server error
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.MessageTooLarge">
+            <summary>
+            Message size has exceeded the size limit
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.TooManyRecipients">
+            <summary>
+            Message exceeded maximum recipient count in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.InvalidData">
+            <summary>
+            Invalid data was found on the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.OverQuota">
+            <summary>
+            The account is over the send quota, rate limit exceeded
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.TooManyErrors">
+            <summary>
+            Too many errors occurred sending the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.InvalidAuthentication">
+            <summary>
+            The ServerId/ApiKey combination is invalid
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.AccountDisabled">
+            <summary>
+            The account has been disabled
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.TooManyMessages">
+            <summary>
+            Too many messages were found in the request
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.NoValidRecipients">
+            <summary>
+            No valid recipients were found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.InvalidAddress">
+            <summary>
+            An invalid recipient were found on the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.InvalidAttachment">
+            <summary>
+            An invalid attachment were found on the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.NoMessages">
+            <summary>
+            No message body was found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.EmptyMessage">
+            <summary>
+            No message body was found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.EmptySubject">
+            <summary>
+            No subject was found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.InvalidFrom">
+            <summary>
+            An invalid from address was found on the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.EmptyToAddress">
+            <summary>
+            No To addresses were found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.NoValidBodyParts">
+            <summary>
+            No valid message body was found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.InvalidTemplateId">
+            <summary>
+            An invalid TemplateId was found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.TemplateHasNoContent">
+            <summary>
+            The specified TemplateId has no content for the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.MessageBodyConflict">
+            <summary>
+            A conflict occurred on the message body of the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.InvalidMergeData">
+            <summary>
+            Invalid MergeData was found on the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.AuthenticationValidationFailed">
+            <summary>
+            Authentication Error, Missing or invalid ServerId or ApiKey
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.EmailAddressValidationMissingFrom">
+            <summary>
+            From email address is missing in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.EmailAddressValidationInvalidFrom">
+            <summary>
+            From email address in the message in invalid
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.RecipientValidationMaxExceeded">
+            <summary>
+            Message exceeded maximum recipient count in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.RecipientValidationNoneInMessage">
+            <summary>
+            No recipients were found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.RecipientValidationMissingTo">
+            <summary>
+            To addresses are missing in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.RecipientValidationInvalidReplyTo">
+            <summary>
+            Invalid ReplyTo address found
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.RecipientValidationInvalidRecipients">
+            <summary>
+            Invalid recipients found
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.MessageValidationEmptySubject">
+            <summary>
+            No subject was found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.MessageValidationEmptyMessage">
+            <summary>
+            No message body was found in the message
+            </summary>
+        </member>
+        <member name="F:SocketLabs.InjectionApi.SendResult.MessageValidationInvalidCustomHeaders">
+            <summary>
+            Invalid custom headers found
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.SocketLabsClient">
+             <summary>
+             SocketLabsClient is a wrapper for the SocketLabs Injection API that makes 
+             it easy to send messages and parse responses.
+             </summary>
+             <example>
+             <code>
+             var client = new SocketLabsClient(00000, "apiKey");
+             
+             var message = new BasicMessage();
+            
+             // Build your message
+             
+             var response = client.Send(message);
+             
+             if (response.Result != SendResult.Success)
+             {
+                 // Handle Error
+             }
+            </code>
+             </example>
+        </member>
+        <member name="P:SocketLabs.InjectionApi.SocketLabsClient.EndpointUrl">
+            <summary>
+            The SocketLabs Injection API endpoint Url
+            </summary>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsClient.#ctor(System.Int32,System.String)">
+            <summary>
+            Creates a new instance of the <c>SocketLabsClient</c>.
+            </summary>
+            <param name="serverId">Your SocketLabs ServerId number.</param>
+            <param name="apiKey">Your SocketLabs Injection API key.</param>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsClient.#ctor(System.Int32,System.String,System.Net.IWebProxy)">
+            <summary>
+            Creates a new instance of the <c>SocketLabsClient</c> with a proxy.
+            </summary>
+            <param name="serverId">Your SocketLabs ServerId number.</param>
+            <param name="apiKey">Your SocketLabs Injection API key.</param>
+            <param name="optionalProxy">The WebProxy you would like to use.</param>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsClient.QuickSend(System.Int32,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Quickly and easily send a basic message without the need to build up a message object
+            or instantiate a SocketLabsClient.
+            </summary>
+            <param name="serverId">Your SocketLabs ServerId number.</param>
+            <param name="apiKey">Your SocketLabs Injection API key.</param>
+            <param name="toAddress">The To address for your message recipient.</param>
+            <param name="fromAddress">The From address to be used for your message.</param>
+            <param name="subject">The subject for your message.</param>
+            <param name="htmlContent">The Html content for your message.</param>
+            <param name="textContent">The plain text content for your message.</param>
+            <remarks>The message must contain either htmlContent, textContent, or both to be valid.</remarks>
+            <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+            <example>
+            This sample shows you how to send a message using QuickSend
+            <code>
+            var response = SocketLabsClient.QuickSend(000000, "apiKey",
+                "recipient@example.com",
+                "from@example.com",
+                "Lorem Ipsum",
+                "<html>Lorem Ipsum</html>",
+                "Lorem Ipsum"
+            );
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsClient.QuickSend(System.Int32,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Quickly and easily send a basic message without the need to build up a message object
+            or instantiate a SocketLabsClient.
+            </summary>
+            <param name="serverId">Your SocketLabs ServerId number.</param>
+            <param name="apiKey">Your SocketLabs Injection API key.</param>
+            <param name="toAddress">The To address for your message recipient.</param>
+            <param name="fromAddress">The From address to be used for your message.</param>
+            <param name="subject">The subject for your message.</param>
+            <param name="content">The content of your message.</param>
+            <param name="isHtml">Use true for Html messages, false for plain text messages.</param> 
+            <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+            <example>
+            This sample shows you how to send a message using QuickSend
+            <code>
+            var response = SocketLabsClient.QuickSend(000000, "apiKey",
+                "recipient@example.com",
+                "from@example.com",
+                "Lorem Ipsum",
+                "<html>Lorem Ipsum</html>",
+                true
+            );
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsClient.SendAsync(SocketLabs.InjectionApi.Message.IBasicMessage)">
+             <summary>
+             Asynchronously sends a basic email message and returns the response from the Injection API.
+             </summary>
+             <param name="message">A <c>BasicMessage</c> object to be sent.</param> 
+             <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+             <example>
+             This sample shows you how to Send a Basic Message
+             <code>
+             var client = new SocketLabsClient(00000, "apiKey");
+             
+             var message = new BasicMessage();
+            
+             message.PlainTextBody = "This is the body of my message sent to ##Name##";
+             message.HtmlBody = "<html>This is the HtmlBody of my message sent to ##Name##</html>";
+             message.Subject = "Sending a test message";
+             message.From.Email = "from@example.com"; 
+             message.To.Add("recipient1@example.com"); 
+             message.To.Add("recipient2@example.com");
+             
+             var response = await client.Send(message);
+             
+             if (response.Result != SendResult.Success)
+             {
+                 // Handle Error
+             }
+            </code>
+             </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsClient.SendAsync(SocketLabs.InjectionApi.Message.IBulkMessage)">
+             <summary>
+             Asynchronously sends a bulk email message and returns the response from the Injection API.
+             </summary>
+             <param name="message">A <c>BulkMessage</c> object to be sent.</param>
+             <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+             <example>
+             This sample shows you how to Send a Bulk Message
+             <code>
+             var client = new SocketLabsClient(00000, "apiKey");
+             
+             var message = new BulkMessage();
+            
+             message.PlainTextBody = "This is the body of my message sent to ##Name##";
+             message.HtmlBody = "<html>This is the HtmlBody of my message sent to ##Name##</html>";
+             message.Subject = "Sending a test message";
+             message.From.Email = "from@example.com";
+             
+             var recipient1 = message.To.Add("recipient1@example.com");
+             recipient1.MergeData.Add("Name", "Recipient1");
+             
+             var recipient2 = message.To.Add("recipient2@example.com");
+             recipient2.MergeData.Add("Name", "Recipient2");
+             
+             var response = await client.Send(message);
+             
+             if (response.Result != SendResult.Success)
+             {
+                 // Handle Error
+             }
+            </code>
+             </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsClient.Send(SocketLabs.InjectionApi.Message.IBasicMessage)">
+             <summary>
+             Synchronously sends a basic email message and returns the response from the Injection API.
+             </summary>
+             <param name="message">A <c>BasicMessage</c> object to be sent.</param> 
+             <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+             <example>
+             This sample shows you how to Send a Basic Message
+             <code>
+             var client = new SocketLabsClient(00000, "apiKey");
+             
+             var message = new BasicMessage();
+            
+             message.PlainTextBody = "This is the body of my message sent to ##Name##";
+             message.HtmlBody = "<html>This is the HtmlBody of my message sent to ##Name##</html>";
+             message.Subject = "Sending a test message";
+             message.From.Email = "from@example.com"; 
+             message.To.Add("recipient1@example.com"); 
+             message.To.Add("recipient2@example.com");
+             
+             var response = client.Send(message);
+             
+             if (response.Result != SendResult.Success)
+             {
+                 // Handle Error
+             }
+            </code>
+             </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsClient.Send(SocketLabs.InjectionApi.Message.IBulkMessage)">
+             <summary>
+             Synchronously sends a bulk email message and returns the response from the Injection API.
+             </summary>
+             <param name="message">A <c>BulkMessage</c> object to be sent.</param>
+             <returns>A <c>SendResponse</c> of an SocketLabsClient send request.</returns>
+             <example>
+             This sample shows you how to Send a Bulk Message
+             <code>
+             var client = new SocketLabsClient(00000, "apiKey");
+             
+             var message = new BulkMessage();
+            
+             message.PlainTextBody = "This is the body of my message sent to ##Name##";
+             message.HtmlBody = "<html>This is the HtmlBody of my message sent to ##Name##</html>";
+             message.Subject = "Sending a test message";
+             message.From.Email = "from@example.com";
+             
+             var recipient1 = message.To.Add("recipient1@example.com");
+             recipient1.MergeData.Add("Name", "Recipient1");
+             
+             var recipient2 = message.To.Add("recipient2@example.com");
+             recipient2.MergeData.Add("Name", "Recipient2");
+             
+             var response = client.Send(message);
+             
+             if (response.Result != SendResult.Success)
+             {
+                 // Handle Error
+             }
+            </code>
+             </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsClient.Dispose">
+            <summary>
+            Disposing the HttpClient
+            </summary>
+        </member>
+        <member name="T:SocketLabs.InjectionApi.SocketLabsExtensions">
+            <summary>
+            Various static extension methods that make it easier to work with the SDK objects in whatever 
+            coding style and patterns work best.
+            </summary>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.IAttachment"/>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/>
+            <seealso cref="T:SocketLabs.InjectionApi.Message.ICustomHeader"/>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Set(SocketLabs.InjectionApi.Message.IEmailAddress,System.String)">
+            <summary>
+            Sets the Email property of an <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/> object.
+            </summary>
+            <param name="email">The <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/> object.</param>
+            <param name="emailAddress">The new email address being set.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/></returns>
+            <example>
+            <code>
+            var email = new EmailAddress();
+            email.Set("recipient@example.com");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Set(SocketLabs.InjectionApi.Message.IEmailAddress,System.String,System.String)">
+            <summary>
+            Sets the Email and FriendlyName properties of an <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/> object.
+            </summary>
+            <param name="email">The <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/> object.</param>
+            <param name="emailAddress">The new email address being set.</param>
+            <param name="friendlyName">The </param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/></returns>
+            <example>
+            <code>
+            var email = new EmailAddress();
+            email.Set("recipient@example.com", "Recipient");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.AddMergeFields(SocketLabs.InjectionApi.Message.IBulkRecipient,System.String,System.String)">
+            <summary>
+            Adds merge field and value to a <see cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/>
+            </summary>
+            <param name="recipient">The <see cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/> object.</param>
+            <param name="field">merge field name</param>
+            <param name="value">merge field value</param> 
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/></returns>
+            <example>
+            <code> 
+            var email = new IBulkRecipient("recipient@example.com");
+            email.AddMergeFields("key1", "value1");
+            email.AddMergeFields("key2", "value2");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IBulkRecipient},System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Adds a new bulk recipient to a list of bulk recipients.
+            </summary>
+            <param name="source">The existing <see cref="T:System.Collections.Generic.List`1"/>.</param>
+            <param name="emailAddress">The email address for the new recipient.</param>
+            <param name="friendlyName">The friendly name for the new recipient.</param>
+            <param name="mergeData">MergeData unique to the new recipient.</param>
+            <returns>Single Instance of <see cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/> added to the list.</returns>
+            <example>
+            <code>
+            var emailList = new <![CDATA[ List<IBulkRecipient> ]]>();
+            
+            var mergeData = new <![CDATA[ Dictionary<string, string> ]]>();
+            mergeData.Add("key1", "value1");
+            mergeData.Add("key2", "value2");
+            
+            emailList.Add("recipient@example.com", "Recipient", mergeData);
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IBulkRecipient},System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Adds a new bulk recipient to a list of bulk recipients.
+            </summary>
+            <param name="source">The existing <see cref="T:System.Collections.Generic.List`1"/>.</param>
+            <param name="emailAddress">The email address for the new recipient.</param>
+            <param name="mergeData">MergeData unique to the new recipient.</param>
+            <returns>Single Instance of <see cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/> added to the list.</returns>
+            <example>
+            <code>
+            var emailList = new <![CDATA[ List<IBulkRecipient> ]]>();
+             
+            var mergeData = new <![CDATA[ Dictionary<string, string> ]]>();
+            mergeData.Add("key1", "value1");
+            mergeData.Add("key2", "value2");
+            
+            emailList.Add("recipient@example.com", mergeData);
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IBulkRecipient},System.String,System.String)">
+            <summary>
+            Adds a new bulk recipient to a list of bulk recipients.
+            </summary>
+            <param name="source">The existing <see cref="T:System.Collections.Generic.List`1"/>.</param>
+            <param name="emailAddress">The email address for the new recipient.</param>
+            <param name="friendlyName">The friendly name for the new recipient.</param>
+            <returns>Single Instance of <see cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/> added to the list.</returns>
+            <example>
+            <code>
+            var emailList = new <![CDATA[ List<IBulkRecipient> ]]>();
+            emailList.Add("recipient@example.com", "Recipient");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IBulkRecipient},System.String)">
+            <summary>
+            Adds a new bulk recipient to a list of bulk recipients.
+            </summary>
+            <param name="source">The existing <![CDATA[ List<IBulkRecipient> ]]>.</param>
+            <param name="emailAddress">The email address for the new recipient.</param>
+            <returns>Single Instance of <see cref="T:SocketLabs.InjectionApi.Message.IBulkRecipient"/> added to the list.</returns>
+            <example>
+            <code>
+            var emailList = new <![CDATA[ List<IBulkRecipient> ]]>(); 
+            emailList.Add("recipient@example.com");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IEmailAddress},System.String,System.String)">
+            <summary>
+            Adds a new recipient to an existing list of recipients.
+            </summary>
+            <param name="source">The existing recipient list.</param>
+            <param name="emailAddress">The new recipient's email address.</param>
+            <param name="friendlyName">The new recipient's friendly name.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/></returns>
+            <example>
+            <code>
+            var emailList = new <![CDATA[ List<IEmailAddress> ]]>();
+            emailList.Add("recipient@example.com", "Recipient");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IEmailAddress},System.String)">
+            <summary>
+            Adds a new recipient to an existing list of recipients.
+            </summary>
+            <param name="source">The existing recipient list.</param>
+            <param name="emailAddress">The new recipient's email address.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IEmailAddress"/></returns>
+            <example>
+            <code>
+            var emailList = new <![CDATA[ List<IEmailAddress> ]]>();
+            emailList.Add("recipient@example.com");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IAttachment},System.String)">
+            <summary>
+            Adds a new attachment to an existing list of attachments
+            </summary>
+            <param name="source">The existing attachment list.</param>
+            <param name="filePath">The path to your attachment on your local system.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IAttachment"/></returns>
+            <example>
+            <code>
+            var attachments = new <![CDATA[ List<IAttachment> ]]>();
+            attachments.Add(@"c:\bus.png");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.AddAsync(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IAttachment},System.String)">
+            <summary>
+            Asynchronously adds a new attachment to an existing list of attachments
+            </summary>
+            <param name="source">The existing attachment list.</param>
+            <param name="filePath">The path to your attachment on your local system.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IAttachment"/></returns>
+            <example>
+            <code>
+            var attachments = new <![CDATA[ List<IAttachment> ]]>();
+            attachments.AddAsync(@"c:\bus.png");
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IAttachment},System.String,System.String,System.String)">
+            <summary>
+            Adds a new attachment to an existing list of attachments
+            </summary>
+            <param name="source">The existing attachment list.</param>
+            <param name="name">The name for your attachment.</param>
+            <param name="mimeType">The MIME type for your attachment.</param>
+            <param name="filePath">The path to your attachment on your local system.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IAttachment"/></returns>
+            <example>
+            <code>
+            var attachments = new <![CDATA[ List<IAttachment> ]]>();
+            attachments.Add("bus", "image/png", @"c:\bus.png"); 
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.AddAsync(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IAttachment},System.String,System.String,System.String)">
+            <summary>
+            Asynchronously adds a new attachment to an existing list of attachments
+            </summary>
+            <param name="source">The existing attachment list.</param>
+            <param name="name">The name for your attachment.</param>
+            <param name="mimeType">The MIME type for your attachment.</param>
+            <param name="filePath">The path to your attachment on your local system.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IAttachment"/></returns>
+            <example>
+            <code>
+            var attachments = new <![CDATA[ List<IAttachment> ]]>();
+            attachments.AddAsync("bus", "image/png", @"c:\bus.png"); 
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IAttachment},System.String,System.String,System.Byte[])">
+            <summary>
+            Adds a new attachment to an existing list of attachments
+            </summary>
+            <param name="source">The existing attachment list.</param>
+            <param name="name">The name for your attachment.</param>
+            <param name="mimeType">The MIME type for your attachment.</param>
+            <param name="content">A byte array containing the attachment content.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IAttachment"/></returns>
+            <example>
+            <code>
+            var attachments = new <![CDATA[ List<IAttachment> ]]>();
+            attachments.Add("bus", "image/png", new byte[] { }); 
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IAttachment},System.String,System.String,System.IO.Stream)">
+            <summary>
+            Adds a new attachment to an existing list of attachments
+            </summary>
+            <param name="source">The existing attachment list.</param>
+            <param name="name">The name for your attachment.</param>
+            <param name="mimeType">The MIME type for your attachment.</param>
+            <param name="stream">A file stream containing the attachment content.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IAttachment"/></returns>
+            <example>
+            <code>
+            var attachments = new <![CDATA[ List<IAttachment> ]]>();
+            attachments.Add("bus", "image/png", File.OpenRead(@"c:\bus.png"));
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.AddAsync(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.IAttachment},System.String,System.String,System.IO.Stream)">
+            <summary>
+            Asynchronously adds a new attachment to an existing list of attachments
+            </summary>
+            <param name="source">The existing attachment list.</param>
+            <param name="name">The name for your attachment.</param>
+            <param name="mimeType">The MIME type for your attachment.</param>
+            <param name="stream">A file stream containing the attachment content.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.IAttachment"/></returns>
+            <example>
+            <code>
+            var attachments = new <![CDATA[ List<IAttachment> ]]>();
+            attachments.AddAsync("bus", "image/png", File.OpenRead(@"c:\bus.png"));
+            </code>
+            </example>
+        </member>
+        <member name="M:SocketLabs.InjectionApi.SocketLabsExtensions.Add(System.Collections.Generic.IList{SocketLabs.InjectionApi.Message.ICustomHeader},System.String,System.String)">
+            <summary>
+            Adds a new custom header to an existing list of custom headers.
+            </summary>
+            <param name="source">The existing list of custom headers.</param>
+            <param name="name">The name of the new custom header.</param>
+            <param name="value">The value for the new custom header.</param>
+            <returns>Instance of <see cref="T:SocketLabs.InjectionApi.Message.ICustomHeader"/></returns>
+            <example>
+            <code>
+            var headers = new <![CDATA[ List<ICustomHeader> ]]>();
+            headers.Add("name1", "value1");
+            headers.Add("name2", "value2");
+            </code>
+            </example>
+        </member>
+    </members>
+</doc>
