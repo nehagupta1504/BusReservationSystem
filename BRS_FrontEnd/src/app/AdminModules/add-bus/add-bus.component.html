@@ -1,0 +1,102 @@
+<div class="login-form">
+    <form #addbusForm="ngForm" method="post" (ngSubmit)='AddBusDetails(addbus)'>
+        
+        <h2 class="text-center"
+            style="text-align: center; background-color: #8EE4AF; color: #05386B; font-size: 30px; font-weight: bold;">
+            ADD BUS</h2>
+        <div class="form-group">
+            <button class="nav-link dropdown-toggle btn btn-default btn-sm btn-info btn-lg " href="#"
+                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    (click)=" getRoutes()">
+                    <span class="glyphicon glyphicon-user"></span>Route Ids
+                    </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                   <div>
+                       <tr  *ngFor="let i of routeslist">
+                        <td>Route id is: {{i.RouteId}}</td>&nbsp;&nbsp;
+                        <td>{{i.Source}}</td>&nbsp;
+                        <td>{{i.Destination}}</td>
+                       </tr>
+                       
+                   </div>
+                </div>
+          
+        </div>
+        <div class="form-group" [class.has.error]="idcontrol.touched&& idcontrol.invalid">
+            <input type="text" class="form-control" 
+            placeholder="Enter RouteId" pattern="[0-9]" required  #idcontrol='ngModel'
+                [(ngModel)]=addbus.RouteId [ngModelOptions]="{standalone: true}">
+                <div *ngIf='idcontrol.touched && idcontrol.invalid'>
+                <span class='help-block alert-danger' *ngIf='idcontrol.touched && idcontrol.invalid'>
+                    Id cannot be blank
+                </span>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group" [class.has.error]="agencynamecontrol.touched&& agencynamecontrol.invalid">
+            <input type="text" class="form-control" pattern="[a-zA-z ]*" placeholder="Agency Name" required  maxlength="30"  #agencynamecontrol='ngModel'
+                [(ngModel)]=addbus.AgencyNAme [ngModelOptions]="{standalone: true}">
+                <div *ngIf='agencynamecontrol.touched&& agencynamecontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='agencynamecontrol.touched&& agencynamecontrol.invalid'>
+                          Agency  name is required
+                    </span>
+                    <span class='help-block alert-danger' *ngIf='agencynamecontrol.errors.minlength'>
+                        agency name should not be more than 30 chars
+                </span>
+    
+               
+        </div>
+        </div>
+        <div class="form-group" [class.has.error]="buscontrol.touched&& buscontrol.invalid">
+            <input type="text" class="form-control" pattern="[a-zA-z ]*" placeholder="Bus Type" required #buscontrol='ngModel'
+                [(ngModel)]=addbus.BusType [ngModelOptions]="{standalone: true}">
+                <div *ngIf='buscontrol.touched&& buscontrol.invalid'>
+                <span class='help-block alert-danger' *ngIf='buscontrol.touched&& buscontrol.invalid'>
+                    Bus TYpe name is required
+              </span>
+              </div>
+        </div>
+        <div class="form-group" [class.has.error]="deptimecontrol.touched&& deptimecontrol.invalid">
+            <input type="time" class="form-control" placeholder="Departure Time" required #deptimecontrol='ngModel' [(ngModel)]=addbus.DepartureTime
+                [ngModelOptions]="{standalone: true}">
+                <div *ngIf='deptimecontrol.touched&& deptimecontrol.invalid'>
+                <span class='help-block alert-danger' *ngIf='deptimecontrol.touched&& deptimecontrol.invalid'>
+                    Give departure time  of bus
+              </span>
+              </div>
+        </div>
+        <div class="form-group"  [class.has.error]="arrtimecontrol.touched&& arrtimecontrol.invalid" >
+            <input type="time" class="form-control" placeholder="Arrival Time" required #arrtimecontrol='ngModel'
+                [(ngModel)]=addbus.ArrivalTime [ngModelOptions]="{standalone: true}">
+                <div *ngIf='arrtimecontrol.touched&& arrtimecontrol.invalid'>
+                <span class='help-block alert-danger' *ngIf='arrtimecontrol.touched&& arrtimecontrol.invalid'>
+                    Give Arrival time of bus
+              </span>
+              </div>
+
+        </div>
+        <div class="form-group" [class.has.error]="farecontrol.touched&& farecontrol.invalid">
+            <input type="number" class="form-control" placeholder="Fare" required #farecontrol='ngModel'
+                [(ngModel)]=addbus.Fare [ngModelOptions]="{standalone: true}">
+                <div *ngIf='farecontrol.touched&& farecontrol.invalid'>
+                <span class='help-block alert-danger' *ngIf='farecontrol.touched&& farecontrol.invalid'>
+                    Give Fare for bus
+              </span>
+              </div>
+        </div>
+        <div class="form-group" >
+            <input type="number" class="form-control" placeholder="Number of Seats" readonly required value="24"
+                [(ngModel)]=addbus.NoOfSeats [ngModelOptions]="{standalone: true}">
+
+        </div>
+        <div class="form-group" >
+            <button type="submit" [disabled]='addbusForm.invalid' class="btn btn-primary button">Add Bus</button>
+            <button type="reset" class="btn btn-primary ">Cancel</button>
+        </div>
+
+    </form>
+    
+</div>

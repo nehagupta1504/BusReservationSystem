@@ -1,0 +1,111 @@
+<!-- 
+<form (ngSubmit)="saveBus(bus)">
+    <h2 class="text-center">Edit Bus {{bus.BusId}}</h2>
+    <label for="bid" class="label">From</label>
+    <input type="number" id="bid" class="ip" name="bid" [(ngModel)]='bus.BusId' readonly><br>
+    <label for="rid" class="label"></label>
+    <input type="number" id="rid" name="rid" [(ngModel)]='bus.RouteId'><br>
+    <label for="dest" class="label"> Agency Name</label>
+    <input type="text" id="" name="" [(ngModel)]='bus.AgencyNAme'><br>
+    <label for="dist" class="label"> Bus Type</label>
+    <input type="text" id="" name="" [(ngModel)]='bus.BusType'><br>
+    <div class="center">
+        <input type="submit" class="btn btn-primary btn-sm">
+    </div>
+</form> -->
+
+<div class="login-form">
+    <form #editbusForm="ngForm" method="" (ngSubmit)='saveBus(bus)'>
+        
+        <h2 class="text-center" style="color: #05386B;">Edit Bus</h2>
+        
+        <div class="form-group">
+            <button class="nav-link dropdown-toggle btn btn-default btn-sm btn-info btn-lg " href="#"
+                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    (click)=" getRoutes()">
+                    <span class="glyphicon glyphicon-user"></span>Route Ids
+                    </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                   <div>
+                       <tr  *ngFor="let i of routeslist">
+                        <td>Route id is: {{i.RouteId}}</td>&nbsp;&nbsp;
+                        <td>{{i.Source}}</td>&nbsp;
+                        <td>{{i.Destination}}</td>
+                       </tr>
+                       
+                   </div>
+                </div>
+          
+        </div>
+        <div class="form-group" [class.has.error]="idcontrol.touched&& idcontrol.invalid">
+            <input type="number" class="form-control"  pattern="[0-9]"  placeholder="Enter RouteId" required #idcontrol='ngModel'
+                [(ngModel)]=bus.RouteId [ngModelOptions]="{standalone: true}">
+                <div *ngIf='idcontrol.touched && idcontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='idcontrol.touched && idcontrol.invalid'>
+                        Id cannot be blank
+                    </span>
+                </div>
+        </div>
+
+
+
+        <div class="form-group"  [class.has.error]="agencynamecontrol.touched&& agencynamecontrol.invalid">
+            <input type="text" class="form-control" pattern="[a-zA-z ]*" placeholder="Agency Name" required maxlength="30"  #agencynamecontrol='ngModel'
+                [(ngModel)]=bus.AgencyNAme [ngModelOptions]="{standalone: true}">
+                <div *ngIf='agencynamecontrol.touched&& agencynamecontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='agencynamecontrol.touched&& agencynamecontrol.invalid'>
+                          Agency  name is required
+                    </span>
+                    <span class='help-block alert-danger' *ngIf='agencynamecontrol.errors.minlength'>
+                        agency name should not be more than 30 chars
+                </span>
+                </div>
+        </div>
+        <div class="form-group"  [class.has.error]="buscontrol.touched&& buscontrol.invalid">
+            <input type="text" class="form-control"  pattern="[a-zA-z ]*" placeholder="Bus Type"required #buscontrol='ngModel'
+                [(ngModel)]=bus.BusType [ngModelOptions]="{standalone: true}">
+                <div *ngIf='buscontrol.touched&& buscontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='buscontrol.touched&& buscontrol.invalid'>
+                        Bus TYpe name is required
+                  </span>
+                  </div>
+        </div>
+        <div class="form-group" [class.has.error]="deptimecontrol.touched&& deptimecontrol.invalid">
+            <input type="time" class="form-control" placeholder="Departure Time" required #deptimecontrol='ngModel' [(ngModel)]=bus.DepartureTime
+                [ngModelOptions]="{standalone: true}">
+                <div *ngIf='deptimecontrol.touched&& deptimecontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='deptimecontrol.touched&& deptimecontrol.invalid'>
+                        Give departure time  of bus
+                  </span>
+                  </div>
+        </div>
+        <div class="form-group"  [class.has.error]="arrtimecontrol.touched&& arrtimecontrol.invalid">
+            <input type="time" class="form-control" placeholder="Arrival Time" required #arrtimecontrol='ngModel'
+                [(ngModel)]=bus.ArrivalTime [ngModelOptions]="{standalone: true}">
+                <div *ngIf='arrtimecontrol.touched&& arrtimecontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='arrtimecontrol.touched&& arrtimecontrol.invalid'>
+                        Give Arrival time of bus
+                  </span>
+                  </div>
+        </div>
+        <div class="form-group" [class.has.error]="farecontrol.touched&& farecontrol.invalid">
+            <input type="number" class="form-control" placeholder="Fare" required="required" #farecontrol='ngModel'
+                [(ngModel)]=bus.Fare [ngModelOptions]="{standalone: true}">
+                <div *ngIf='farecontrol.touched&& farecontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='farecontrol.touched&& farecontrol.invalid'>
+                        Give Fare for bus
+                  </span>
+                  </div>
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Number of Seats" required="required"
+                [(ngModel)]=bus.NoOfSeats [ngModelOptions]="{standalone: true}" readonly>
+        </div>
+        <div class="form-group">
+            <button type="submit" [disabled]='editbusForm.invalid' class="btn btn-primary button">Save</button>
+            <button type="reset" class="btn btn-primary ">Cancel</button>
+        </div> 
+
+    </form>
+    
+</div>

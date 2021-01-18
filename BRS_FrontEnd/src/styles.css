@@ -1,0 +1,21 @@
+
+.top
+        {
+            text-align:center;
+            background-color: darkslategray;
+            opacity:0.8;
+            color:white;
+            height:80px;
+
+        }
+
+        .big
+        {
+            font-size: larger;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .body{
+            background-color: #8EE4AF;
+        }

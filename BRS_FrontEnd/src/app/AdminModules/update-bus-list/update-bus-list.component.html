@@ -1,0 +1,45 @@
+<div class='container'>
+    <H4 class='btn-danger'
+        style="text-align: center; background-color: #8EE4AF; color: #05386B; font-size: 30px; font-weight: bold;">BUS
+        LIST</H4>
+    <div class='jumbotron'>
+        <!-- <p>
+        <a [routerLink]="['/add']" class="btn btn-primary float-right mb-3" >New Department</a>
+        </p> -->
+        <table class="table table-sm table-hover">
+            <tr style="background-color: #8EE4AF;">
+                <th>Bus-Id</th>
+                <th>Route-Id</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Agency Name</th>
+                <th>Bus Type</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Fare</th>
+                <th>No. of seats</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let bus of busList">
+                <td>{{ bus.BusId }}</td>
+                <th>{{ bus.RouteId }}</th>
+                <th>{{bus.Source}}</th>
+                <th>{{bus.Destination}}</th>
+                <th>{{bus.AgencyNAme}}</th>
+                <th>{{bus.BusType}}</th>
+                <th>{{bus.DepartureTime}}</th>
+                <th>{{bus.ArrivalTime}}</th>
+                <th>{{bus.Fare}}</th>
+                <th>{{bus.NoOfSeats}}</th>
+
+                <td><a [routerLink]="['/editbus/', bus.BusId]" class="btn btn-primary btn-sm float-right">Edit</a></td>
+
+                <!-- <td></td>
+            <td></td>
+            <td><a [routerLink]="['/display/', dept.Id]" class="btn btn-primary btn-sm float-right" >Display</a></td> 
+            <td><a [routerLink]="['/edit/', dept.Id]" class="btn btn-primary btn-sm float-right" >Edit</a></td> 
+            <td><a [routerLink]="['/delete/',dept.Id]" class="btn btn-danger btn-sm float-right" >Delete</a></td>  -->
+            </tr>
+        </table>
+    </div>
+</div>

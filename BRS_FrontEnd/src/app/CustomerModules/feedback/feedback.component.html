@@ -1,0 +1,41 @@
+<div class="container">
+    <div class=" row">
+        <div class="col-xs-20 col-md-8">
+            <div class=" panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title" style="text-align: center;">
+                        Feedback
+                    </h4>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <p style="text-align: center;">Your feedback is valuable to us, Kindly share your views with us.</p>
+                    <form class="form-group" style="margin-left: 150px;">
+                        <textarea placeholder="Mention your comments here..." rows="5" cols="50" [(ngModel)]=comment
+                            [ngModelOptions]="{standalone: true}"></textarea>
+                        <div class="rating">
+                            <input type="radio" name="rating" value="5" id="5" (click)='ratingFunction5()'><label
+                                for="5">☆</label>
+                            <input type="radio" name="rating" value="4" id="4" (click)='ratingFunction4()'><label
+                                for="4">☆</label>
+                            <input type="radio" name="rating" value="3" id="3" (click)='ratingFunction3()'><label
+                                for="3">☆</label>
+                            <input type="radio" name="rating" value="2" id="2" (click)='ratingFunction2()'><label
+                                for="2">☆</label>
+                            <input type="radio" name="rating" value="1" id="1" (click)='ratingFunction1()'><label
+                                for="1">☆</label>
+                            <label id="lbl" style="font-weight: bold; font-size: 20px;">{{rating}}</label>
+                        </div>
+                        <button class="btn btn-success" style="margin-left: 160px;"
+                            (click)='feedbackSubmit()'>Submit</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

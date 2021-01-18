@@ -1,0 +1,84 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Bus Number</th>
+            <th scope="col">Agency Name</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Departure Date</th>
+            <th scope="col">Departure Time</th>
+            <th scope="col">Arrival Date</th>
+            <th scope="col">Arrival Time</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let bus of buslist">
+            <td scope="row">{{bus.BusNumber}}</td>
+            <td scope="row">{{bus.AgencyNAme}}</td>
+            <td scope="row">{{bus.Source}}</td>
+            <td scope="row">{{bus.Destination}}</td>
+            <td scope="row">{{bus.BoardingDate | date:'longDate'}}</td>
+            <td scope="row">{{bus.DepartureTime}}</td>
+            <td scope="row">{{bus.DroppingDate | date:'longDate'}}</td>
+            <td scope="row">{{bus.ArrivalTime}}</td>
+
+  
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#seatBook"
+                (click)='getSeatDetailsWithFare(bus.BusNumber,bus.BoardingDate)'>Select Seat</button>
+        </tr>
+
+    </tbody>
+</table>
+<!-- Modal -->
+<div id="seatBook" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Choose Your Seats</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" *ngFor="let row of [1,2,3,4]">
+                    <div class="col" *ngFor="let col  of [1,2,3,4,5,6]">
+                        <label> {{rowNo[row-1]}}:{{col}}</label>
+                        <input type="checkbox" id="seat" (click)='getSeatNo(row,col)'
+                            [disabled]=seatlistDB[(row-1)*6+col]>
+                    </div>
+                    <div class=" w-100">
+                    </div>
+                    <div *ngIf="row == 2"><br></div>
+
+                </div>
+                <span style="float: right;">Total Fare:{{fare}}Rs.</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary " data-dismiss="modal" [disabled]="paymentButton"
+                    [routerLink]="['/booking/',busId,boardingDate,fare]">Payment</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="busBook" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Choose Your Seats</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <span style="float: right;">Total Fare:{{fare}}Rs.</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary " data-dismiss="modal" [disabled]="paymentButton"
+                    [routerLink]="['/booking/',busId,boardingDate,fare]">Payment</button>
+            </div>
+        </div>
+
+    </div>
+</div>

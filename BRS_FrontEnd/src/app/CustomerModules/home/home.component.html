@@ -1,0 +1,33 @@
+
+<div class="container main">
+    <form>
+        <h2 class="text-center" style="color: #05386B;">Book Buses</h2>
+        <label for="bstop" class="label"  style="color: #05386B;">From</label>
+        <input type="text" id="bstop" class="ip"  [class.has.error]="namecontrol.touched&& namecontrol.invalid" name="bstop" pattern="[a-zA-z ]*"  #namecontrol='ngModel' required="required" [(ngModel)]='bus.from'><br>
+        <div *ngIf='namecontrol.touched&& namecontrol.invalid'>
+            <span class='help-block alert-danger' *ngIf='namecontrol.touched&& namecontrol.invalid'>
+               source is required
+            </span>
+           
+
+       
+        </div>
+        <label for="dstop" class="label" style="color: #05386B;">To</label>
+        <input type="text" id="dstop" [class.has.error]="destcontrol.touched&& destcontrol.invalid" pattern="[a-zA-z ]*"  #destcontrol='ngModel' name="dstop" required="required"  [(ngModel)]='bus.to'><br>
+        <div *ngIf='destcontrol.touched&& destcontrol.invalid'>
+            <span class='help-block alert-danger' *ngIf='destcontrol.touched&& destcontrol.invalid'>
+               destination is required
+            </span>
+           
+
+       
+        </div>
+        <label for="tdate" class="label" style="color: #05386B;"> Travel Date</label>
+        <input type="date" id="tdate" name="tdate" [(ngModel)]='bus.traveldate' required="required"><br>
+        <div class="center">
+            <button class="btn btn-primary " [routerLink]="['/buslist/',bus.from,bus.to,bus.traveldate]">Search</button>
+        </div>
+
+    </form>
+
+</div>

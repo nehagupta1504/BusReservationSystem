@@ -1,0 +1,28 @@
+<div class="login-form">
+    <form (ngSubmit)='getEmailAndBookingId(emailAndBooking)'>
+        <h2 class="text-center">See Booking</h2>
+        <div class="form-group" [class.has.error]="mailcontrol.touched&& mailcontrol.invalid">
+            <input type="email" class="form-control"  #mailcontrol='ngModel' placeholder="Enter Email" aria-describedby="inputGroupPrepend2"
+                required="required" [(ngModel)]='emailAndBooking.email' [ngModelOptions]="{standalone: true}">
+                <div *ngIf='mailcontrol.touched && mailcontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='mailcontrol.touched && mailcontrol.invalid'>
+                        enter your email
+                    </span>
+                </div>
+        </div>
+        <div class="form-group" [class.has.error]="bidcontrol.touched&& bidcontrol.invalid">
+            <input type="text" class="form-control" #bidcontrol='ngModel' placeholder="Enter Booking Id" required="required"
+                [(ngModel)]='emailAndBooking.bookingId' [ngModelOptions]="{standalone: true}">
+                <div *ngIf='bidcontrol.touched && bidcontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='mailcontrol.touched && mailcontrol.invalid'>
+                        enter your booking id
+                    </span>
+                </div>
+        </div>
+        <div class=" form-group">
+            <button type="submit" class="btn btn-primary btn-block">Get Booking</button>
+        </div>
+        
+    </form>
+    
+</div>

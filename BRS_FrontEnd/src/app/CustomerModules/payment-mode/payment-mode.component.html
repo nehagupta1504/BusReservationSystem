@@ -1,0 +1,95 @@
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-20 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Choose Your Payment Mode
+                    </h3>
+                    <hr>
+                </div>
+                <ul class=" nav nav-pills nav-stacked">
+                    <li class="active" style="text-align: center;"><label
+                            style="font-weight: bold; font-size: 20px;">&nbsp; Amount to be paid:</label>
+                        <label> &nbsp;
+                            {{fare}} Rs.</label>
+                    </li>
+                </ul>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-xs-15 col-md-8">
+                            <a href="#cardpayment" class="btn btn-primary" data-toggle="collapse">Credit
+                                Card / Debit
+                                Card</a>
+                            <div id="cardpayment" class="collapse">
+                                <br><label for="cardNumber">
+                                    CARD NUMBER</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cardNumber"
+                                        placeholder="Valid Card Number" required autofocus />
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-7 col-md-7">
+                                        <div class="form-group">
+                                            <br><label for="expityMonth">
+                                                EXPIRY DATE</label>
+                                            <div class="col-xs-6 col-lg-6 pl-ziro">
+                                                <input type="text" class="form-control" id="expityMonth"
+                                                    placeholder="MM" required />
+                                            </div>
+                                            <div class="col-xs-6 col-lg-6 pl-ziro">
+                                                <input type="text" class="form-control" id="expityYear" placeholder="YY"
+                                                    required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5 col-md-5 pull-right">
+                                        <div class="form-group">
+                                            <br><label for="cvCode">
+                                                CV CODE</label>
+                                            <input type="password" class="form-control" id="cvCode" placeholder="CV"
+                                                required />
+                                        </div>
+                                    </div>
+                                </div><br>
+
+                                <button class="btn btn-success" style="width: 100px;" (click)='payment()'>Pay</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-xs-15 col-md-8">
+                            <a href="#wallet" class="btn btn-primary" data-toggle="collapse">Wallet</a>
+                            <div id="wallet" class="collapse">
+                                <label style="font-weight: bold; font-size: 20px;">Wallet Amount:</label>
+                                <label>{{walletAmount}} Rs.</label><br>
+                                <button class="btn btn-success" style="width: 100px;" (click)='paymentFromWallet()'
+                                    [disabled]=disableWallet>Pay</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-xs-15 col-md-8">
+                            <a href="#upi" class="btn btn-primary" data-toggle="collapse">Upi</a>
+                            <div id="upi" class="collapse"><br>
+                                <input type="text" class="form-control" id="cvCode" placeholder="Enter your Upi"
+                                    required /><br>
+                                <button class="btn btn-success" style="width: 100px;" (click)='payment()'>Pay</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="login-form">
+    <form (ngSubmit)="SaveRoute(route)">
+        <h2 class="text-center" style="color: #05386B;">Edit Route</h2>
+        <div class="form-group" >
+            <label for="rid" class="label">From:</label><br>
+            <input type="text" class="form-control" id="rid" class="ip" name="rid" [(ngModel)]='route.RouteId'
+                readonly><br>
+        </div>
+        <div class="form-group" [class.has.error]="namecontrol.touched&& namecontrol.invalid">
+            <label for="src" class="label">Source:</label>
+            <input type="text" class="form-control"  pattern="[a-zA-z ]*"  #namecontrol='ngModel' id="src" name="src" required="required" [(ngModel)]='route.Source'><br>
+            <div *ngIf='namecontrol.touched&& namecontrol.invalid'>
+                <span class='help-block alert-danger' *ngIf='namecontrol.touched&& namecontrol.invalid'>
+                   source is required
+                </span>
+               
+
+           
+            </div>
+        </div>
+        <div class="form-group" [class.has.error]="destcontrol.touched&& destcontrol.invalid">
+            <label for="dest" class="label"> Destination:</label>
+            <input type="text" class="form-control" pattern="[a-zA-z ]*"  #destcontrol='ngModel' id="dest" name="dest" required="required" [(ngModel)]='route.Destination'><br>
+            <div *ngIf='destcontrol.touched&& destcontrol.invalid'>
+                <span class='help-block alert-danger' *ngIf='destcontrol.touched&& destcontrol.invalid'>
+                   destination is required
+                </span>
+               
+
+           
+            </div>
+        </div>
+        <div class="form-group" [class.has.error]="discontrol.touched && discontrol.invalid">
+            <label for="dist" class="label"> Distance:</label>
+            <input type="text" class="form-control"   #discontrol='ngModel' id="dist" name="dist" required="required" [(ngModel)]='route.Distance'><br>
+            <div *ngIf='discontrol.touched&& discontrol.invalid'>
+                <span class='help-block alert-danger' *ngIf='discontrol.touched && discontrol.invalid'>
+                   distance is required
+                </span>
+               
+
+           
+            </div>
+        </div>
+
+
+        <div class="center">
+            <input type="submit" class="btn btn-primary btn-sm">
+        </div>
+    </form>
+</div>

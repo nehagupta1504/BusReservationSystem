@@ -1,0 +1,24 @@
+.column {
+    border: black;
+    border-style:double;
+    padding: 60px;
+    margin-left: 100px;
+    float: left;
+    width: 40%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column .column2{
+    float: left;
+    margin-right: 5px;
+    width:40%;
+  }
+  .lbl{
+    font-weight: bold;
+  }

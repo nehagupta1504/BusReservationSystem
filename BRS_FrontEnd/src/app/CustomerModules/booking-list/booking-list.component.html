@@ -1,0 +1,34 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">AGENCY NAME</th>
+            <th scope="col">BOOKED ON</th>
+            <th scope="col">BOARDING DATE</th>
+            <th scope="col">SOURCE</th>
+            <th scope="col">DESTINATION</th>
+            <th scope="col">DEPARTURE TIME</th>
+            <th scope="col">ARRIVAL TIME</th>
+            <th scope="col">STATUS</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let b of bookinglist">
+            
+            <td scope="row">{{b.AgencyNAme}}</td>
+            <td scope="row">{{b.BookingDateTime| date:'longDate' }}</td>
+            <td scope="row">{{b.boardingDate| date:'longDate' }}</td>
+            <td scope="row">{{b.Source}}</td>
+            <td scope="row">{{b.Destination}}</td>
+            <td scope="row">{{b.DepartureTime}}</td>
+            <td scope="row">{{b.ArrivalTime}}</td>
+            <td scope="row">{{b.Status}}</td>
+            <td >
+            <td><button class="btn btn-primary" type="button" data-toggle="modal" data-target="#seatBook"
+                [routerLink]="['/showbooking/',email,b.BookingId]">CANCEL</button>
+            </td>
+        
+        </tr>
+
+    </tbody>
+</table>

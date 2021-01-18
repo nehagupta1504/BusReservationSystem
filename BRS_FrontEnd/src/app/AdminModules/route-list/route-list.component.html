@@ -1,0 +1,21 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">RouteId</th>
+            <th scope="col">Source</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Distance</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let route of routelist">
+            <td scope="row">{{route.RouteId}}</td>
+            <td scope="row">{{route.Source}}</td>
+            <td scope="row">{{route.Destination}}</td>
+            <td scope="row">{{route.Distance}}</td>
+            <td><a [routerLink]="['/editroute/', route.RouteId]" class="btn btn-primary btn-sm float-right">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

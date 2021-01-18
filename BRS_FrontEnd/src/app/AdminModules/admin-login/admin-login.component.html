@@ -1,0 +1,31 @@
+<div class="login-form">
+    <form (ngSubmit)='getloginDetais(sendlogincust)'>
+        <h2 class="text-center">Admin Log in</h2>
+        <div class="form-group" [class.has.error]="mailcontrol.touched&& mailcontrol.invalid">
+            <input type="email" class="form-control" #mailcontrol='ngModel'  #passwordcontrol='ngModel'  placeholder="Email" aria-describedby="inputGroupPrepend2"
+                required="required" [(ngModel)]='sendlogincust.email' [ngModelOptions]="{standalone: true}">
+                <div *ngIf='mailcontrol.touched && mailcontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='mailcontrol.touched && mailcontrol.invalid'>
+                        Enter your email
+                    </span>
+                </div>
+        </div>
+        <div class="form-group" [class.has.error]="passwordcontrol.touched&& passwordcontrol.invalid">
+            <input type="password" class="form-control" #passwordcontrol='ngModel'  placeholder="Password" required="required"
+                [(ngModel)]='sendlogincust.password' [ngModelOptions]="{standalone: true}">
+                <div *ngIf='passwordcontrol.touched && passwordcontrol.invalid'>
+                    <span class='help-block alert-danger' *ngIf='passwordcontrol.touched && passwordcontrol.invalid'>
+                        enter password
+                    </span>
+                </div>
+        </div>
+        <div class=" form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div class="clearfix">
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <a routerLink="/forgetpassword" class="pull-right">Forgot Password?</a>
+        </div>
+    </form>
+    
+</div>
